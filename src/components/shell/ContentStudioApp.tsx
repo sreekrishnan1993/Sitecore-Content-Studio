@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { ApiAuthProvider } from "../state/ApiAuth";
 import { IntegrationProvider, useIntegration } from "../state/IntegrationProvider";
 import { StudioProvider, useStudio } from "../state/StudioProvider";
 import { Badge, Icon, type IconName } from "../ui";
@@ -127,9 +128,11 @@ export default function ContentStudioApp() {
   return (
     <div className="cs-root">
       <IntegrationProvider>
-        <StudioProvider>
-          <Shell />
-        </StudioProvider>
+        <ApiAuthProvider>
+          <StudioProvider>
+            <Shell />
+          </StudioProvider>
+        </ApiAuthProvider>
       </IntegrationProvider>
     </div>
   );

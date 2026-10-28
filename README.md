@@ -183,7 +183,20 @@ Add a fixture expressing the same structure to `tests/structure.test.ts` ("equiv
 | `none` | No authentication. Default in development. In production it also requires `CONTENT_STUDIO_ALLOW_UNAUTHENTICATED=true`. Use it only for a controlled sandbox. |
 | *(unset in production)* | **Fails closed:** every POST returns 503 and the UI disables uploads. |
 
-The browser sends the token through `setApiTokenProvider()` (`src/lib/security/client-auth.ts`). Wiring Auth0 sign-in on the client (for example `@auth0/auth0-react` `getAccessTokenSilently`) with the app's Marketplace client credentials is the remaining step to enable `auth0` mode.
+**Browser sign-in** (`src/components/state/ApiAuth.tsx`). Create *Single Page App* client credentials for the app in the Cloud Portal (no client secret is used). When Content Studio runs inside Sitecore and `NEXT_PUBLIC_CONTENT_STUDIO_AUTH0_CLIENT_ID` is set, `@auth0/auth0-react` signs the user in with Sitecore in a pop-up (Sitecore's sign-in page cannot be shown inside the iframe). The organization, tenant and app (`organization_id`, `tenant_id`, `product_codes=mkp_<app ID>`) come from the Marketplace application context, so one deployment serves every tenant. Refresh tokens are kept in local storage because silent renewal through a hidden iframe fails when third-party cookies are blocked. `getAccessTokenSilently` is registered with `setApiTokenProvider()` (`src/lib/security/client-auth.ts`), and each upload sends the token as a bearer token. The token only proves who is calling Content Studio's API; Sitecore content is still read and written through the Marketplace SDK.
+
+Example for a public deployment (Vercel project settings; `NEXT_PUBLIC_*` values are built into the browser code, so redeploy after changing them):
+
+```
+CONTENT_STUDIO_DEPLOYMENT=production
+CONTENT_STUDIO_AUTH_MODE=auth0
+CONTENT_STUDIO_AUTH0_DOMAIN=auth.sitecorecloud.io
+CONTENT_STUDIO_AUTH0_AUDIENCE=https://api-webapp.sitecorecloud.io
+CONTENT_STUDIO_AUTH0_CLIENT_IDS=<client ID>
+NEXT_PUBLIC_CONTENT_STUDIO_AUTH0_CLIENT_ID=<client ID>
+```
+
+The domain and audience are the values Sitecore's custom-authorization samples use; confirm them for your organization.
 
 **Other controls, in request order:**
 1. Cross-site browser requests are refused (`Sec-Fetch-Site` / `Origin`). This is not authentication.
@@ -246,6 +259,9 @@ An attempt is recorded as *pending* before the request is sent. If the page relo
 | `CONTENT_STUDIO_AUTH0_AUDIENCE` | — | Expected `aud` of access tokens (required for `auth0`) |
 | `CONTENT_STUDIO_AUTH0_CLIENT_IDS` | — | Comma-separated allowed `azp`/`client_id` values |
 | `CONTENT_STUDIO_ALLOWED_ORG_IDS` | — | Comma-separated allowed organization IDs |
+| `NEXT_PUBLIC_CONTENT_STUDIO_AUTH0_CLIENT_ID` | — | The app's Single Page App client ID, for browser sign-in. Not a secret; built into the browser code |
+| `NEXT_PUBLIC_CONTENT_STUDIO_AUTH0_DOMAIN` | `auth.sitecorecloud.io` | Sign-in domain used by the browser |
+| `NEXT_PUBLIC_CONTENT_STUDIO_AUTH0_AUDIENCE` | `https://api-webapp.sitecorecloud.io` | Audience the browser requests; must equal `CONTENT_STUDIO_AUTH0_AUDIENCE` |
 | `CONTENT_STUDIO_AUTH0_ORG_CLAIM` | `org_id` | Claim name holding the organization ID |
 | `CONTENT_STUDIO_RATE_LIMIT_PER_MINUTE` | `10` | Extractions per user (or IP / shared bucket) per minute, per instance |
 | `CONTENT_STUDIO_MAX_CONCURRENT_EXTRACTIONS` | `2` | Concurrent extractions per instance |
@@ -491,7 +507,8 @@ A GraphQL alternative for step 1 is the documented `deleteItem(input: { path: "<
 
 - `none` mode has no identity check. The endpoint is protected only by the origin check, rate limits and size limits. Use it only for a time-boxed sandbox on a loopback-bound server, with synthetic documents.
 - In development (`next dev`) with no auth mode set, extraction is unauthenticated by design. Production fails closed.
-- The Auth0 client sign-in flow is not implemented; only server-side token verification is (unit-tested with locally generated keys). Until it is, `auth0` mode rejects every upload with 401.
+- The browser sign-in has not yet been tested against a live Sitecore tenant. The `organization_id`, `tenant_id` and `product_codes` sign-in parameters, the domain and the audience follow Sitecore's custom-authorization samples. Server-side token verification is unit-tested with locally generated keys.
+- Sign-in opens a pop-up, so the Sitecore iframe must allow pop-ups. Tokens are cached in the browser's local storage for this origin.
 - **Deployment requirement:** in-process rate limits are per instance, so platform-level rate limiting (WAF, API gateway or hosting provider) is required for any shared deployment.
 - The sandbox write guard and the in-app preflight run in the browser. They prevent testing against the wrong tenant by mistake, not deliberate misuse; Sitecore permissions remain the real control. Grant the test user rights on the test folder only.
 - The tenant fields the guard compares (`tenantName`, `tenantDisplayName`, `tenantId`, `resourceId`) come from the SDK's `application.context` types. Their values must be checked on the tenant (step 0).

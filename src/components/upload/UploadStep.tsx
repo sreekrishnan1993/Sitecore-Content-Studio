@@ -7,6 +7,7 @@ import { apiAuthHeaders } from "@/src/lib/security/client-auth";
 import type { ExtractionErrorBody, ExtractionResult } from "@/src/lib/types/extraction";
 import { checkFileBasics, formatBytes } from "@/src/lib/validation/file";
 import { siteSelectionPatch } from "@/src/lib/mapping";
+import { useApiAuth } from "../state/ApiAuth";
 import { useIntegration } from "../state/IntegrationProvider";
 import { useStudio } from "../state/StudioProvider";
 import { useAsyncData } from "../state/useAsyncData";
@@ -35,13 +36,25 @@ export function UploadStep({ onDone }: { onDone: () => void }) {
   const { adapter, connecting } = useIntegration();
   const sites = useAsyncData(connecting ? null : `sites:${adapter.status.mode}`, () => adapter.listSites());
   const [siteId, setSiteId] = useState("");
+  const auth = useApiAuth();
+  const [signInError, setSignInError] = useState<string | null>(null);
+  const signIn = async () => {
+    setSignInError(null);
+    try {
+      await auth.signIn();
+    } catch (error) {
+      setSignInError(error instanceof Error && /popup/i.test(error.message) ? "The sign-in window was blocked or closed. Allow pop-ups for Sitecore and try again." : error instanceof Error ? error.message : String(error));
+    }
+  };
   const inputRef = useRef<HTMLInputElement>(null);
   const xhrRef = useRef<XMLHttpRequest | null>(null);
   const abortRef = useRef<AbortController | null>(null);
 
   const maxBytes = caps?.maxUploadBytes ?? DEFAULT_MAX_UPLOAD_MB * 1024 * 1024;
   const busy = phase.kind === "uploading" || phase.kind === "processing";
-  const serverBlocked = caps?.authMode === "misconfigured";
+  // The server requires a signed-in Sitecore user (auth0 mode); the bundled sample does not use the server.
+  const needsSignIn = caps?.authMode === "auth0" && !auth.isAuthenticated;
+  const serverBlocked = caps?.authMode === "misconfigured" || needsSignIn;
 
   useEffect(() => () => {
     xhrRef.current?.abort();
@@ -157,7 +170,31 @@ export function UploadStep({ onDone }: { onDone: () => void }) {
         </Alert>
       )}
       {capsError && <Alert tone="error" title="Extraction service unavailable">The server-side extraction API could not be reached ({capsError}). Uploads will not work until it is available. You can still try the sample.</Alert>}
-      {serverBlocked && (
+      {caps?.authMode === "auth0" &&
+        (auth.isAuthenticated ? (
+          <p className="cs-small cs-muted">
+            Signed in{auth.userName ? ` as ${auth.userName}` : ""} for document processing.{" "}
+            <button type="button" className="cs-btn cs-ghost cs-sm" onClick={auth.signOut}>
+              Sign out
+            </button>
+          </p>
+        ) : auth.available ? (
+          <Alert tone="info" title="Sign in to process documents">
+            Document upload and URL import need your Sitecore sign-in. It opens in a small window.{" "}
+            <button type="button" className="cs-btn cs-primary cs-sm" onClick={signIn} disabled={auth.isLoading}>
+              {auth.isLoading ? <span className="cs-spinner" aria-hidden /> : null} Sign in with Sitecore
+            </button>
+            {(signInError ?? auth.error) && <span style={{ display: "block", marginTop: 6, color: "var(--cs-danger)" }}>{signInError ?? auth.error}</span>}
+          </Alert>
+        ) : (
+          <Alert tone="warning" title="Sign-in is not available here">
+            {connecting
+              ? "Connecting to Sitecore…"
+              : "Document processing requires a Sitecore sign-in. Open Content Studio from Sitecore; if it is already open there, the app's client ID (NEXT_PUBLIC_CONTENT_STUDIO_AUTH0_CLIENT_ID) is not configured on the server."}{" "}
+            You can still try the sample.
+          </Alert>
+        ))}
+      {caps?.authMode === "misconfigured" && (
         <Alert tone="error" title="Document processing is disabled">
           The server has no authentication configured, so it refuses to process documents. An administrator must configure CONTENT_STUDIO_AUTH_MODE (see README). You can still try the sample.
         </Alert>

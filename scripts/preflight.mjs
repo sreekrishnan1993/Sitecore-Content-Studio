@@ -91,7 +91,11 @@ export function checkEnvironment(env, { projectDir } = {}) {
   if (auth.mode === "misconfigured") add("fail", "Authentication", `Misconfigured: ${auth.reason} The server will refuse all extraction.`);
   else if (auth.mode === "auth0") {
     add("pass", "Authentication", "auth0: bearer tokens are verified.");
-    add("warn", "Auth0 client sign-in", "Not implemented in the browser yet: uploads will get 401 until setApiTokenProvider() is wired.");
+    const clientId = env.NEXT_PUBLIC_CONTENT_STUDIO_AUTH0_CLIENT_ID?.trim();
+    add(clientId ? "pass" : "fail", "Auth0 client sign-in", clientId ? `Browser sign-in with client ID ${clientId}.` : "NEXT_PUBLIC_CONTENT_STUDIO_AUTH0_CLIENT_ID is not set; users cannot sign in, so every upload gets 401. Set it and rebuild.");
+    if (clientId && env.CONTENT_STUDIO_AUTH0_CLIENT_IDS?.trim() && !env.CONTENT_STUDIO_AUTH0_CLIENT_IDS.split(",").map((v) => v.trim()).includes(clientId)) {
+      add("fail", "Auth0 client restriction", "CONTENT_STUDIO_AUTH0_CLIENT_IDS does not include the browser's client ID, so every token would be rejected.");
+    }
     if (!env.CONTENT_STUDIO_AUTH0_CLIENT_IDS?.trim()) add("warn", "Auth0 client restriction", "CONTENT_STUDIO_AUTH0_CLIENT_IDS is not set; any client of the audience is accepted.");
   } else if (deployment !== "sandbox") add("fail", "Authentication", "none (unauthenticated) on a deployment not marked as sandbox.");
   else add("warn", "Authentication", "none (unauthenticated): run only on a loopback/private address, time-boxed, with synthetic documents.");

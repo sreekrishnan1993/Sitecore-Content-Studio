@@ -88,6 +88,25 @@ describe("CLI preflight: configuration", () => {
     expect(results.filter((r) => r.status === "fail").map((r) => r.label)).toEqual(["Authentication"]);
   });
 
+  it("passes a production deployment with Sitecore sign-in, and catches a client ID mismatch", () => {
+    const prod = {
+      NODE_ENV: "production",
+      CONTENT_STUDIO_DEPLOYMENT: "production",
+      CONTENT_STUDIO_AUTH_MODE: "auth0",
+      CONTENT_STUDIO_AUTH0_DOMAIN: "auth.sitecorecloud.io",
+      CONTENT_STUDIO_AUTH0_AUDIENCE: "https://api-webapp.sitecorecloud.io",
+      CONTENT_STUDIO_AUTH0_CLIENT_IDS: "client-123",
+      NEXT_PUBLIC_CONTENT_STUDIO_AUTH0_CLIENT_ID: "client-123",
+    };
+    const ok: Result[] = checkEnvironment(prod);
+    expect(ok.filter((r) => r.status === "fail")).toEqual([]);
+    expect(byLabel(ok, "Auth0 client sign-in")?.status).toBe("pass");
+    const mismatch: Result[] = checkEnvironment({ ...prod, CONTENT_STUDIO_AUTH0_CLIENT_IDS: "other" });
+    expect(byLabel(mismatch, "Auth0 client restriction")?.status).toBe("fail");
+    const noClient: Result[] = checkEnvironment({ ...prod, NEXT_PUBLIC_CONTENT_STUDIO_AUTH0_CLIENT_ID: "" });
+    expect(byLabel(noClient, "Auth0 client sign-in")?.status).toBe("fail");
+  });
+
   it("still fails unauthenticated mode on a production deployment", () => {
     const results: Result[] = checkEnvironment({ ...sandboxEnv, CONTENT_STUDIO_DEPLOYMENT: "production" });
     expect(byLabel(results, "Authentication")?.status).toBe("fail");

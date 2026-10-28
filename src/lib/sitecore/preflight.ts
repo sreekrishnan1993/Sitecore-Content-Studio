@@ -47,7 +47,16 @@ export async function runPreflight(input: PreflightInput): Promise<PreflightChec
   if (!caps) {
     add("server", "Extraction service", "fail", `Server configuration could not be read${input.capabilitiesError ? ` (${input.capabilitiesError})` : ""}.`);
   } else {
-    if (caps.authMode === "auth0") add("auth", "API authentication", "pass", "auth0: access tokens are verified.");
+    if (caps.authMode === "auth0") {
+      // Inlined at build time: the browser needs the app's client ID to sign users in.
+      const clientId = process.env.NEXT_PUBLIC_CONTENT_STUDIO_AUTH0_CLIENT_ID?.trim();
+      add(
+        "auth",
+        "API authentication",
+        clientId ? "pass" : "fail",
+        clientId ? "auth0: users sign in with Sitecore; access tokens are verified by the server." : "auth0 on the server, but NEXT_PUBLIC_CONTENT_STUDIO_AUTH0_CLIENT_ID was not set when the app was built, so users cannot sign in.",
+      );
+    }
     else if (caps.authMode === "misconfigured") add("auth", "API authentication", "fail", "Not configured: the server refuses all document uploads and URL imports until sign-in is configured (CONTENT_STUDIO_AUTH_MODE=auth0).");
     else if (caps.deployment === "sandbox") add("auth", "API authentication", "warn", "none: unauthenticated. Acceptable only for a private, time-boxed sandbox with synthetic documents.");
     else add("auth", "API authentication", "fail", "none: unauthenticated on a deployment that is not marked CONTENT_STUDIO_DEPLOYMENT=sandbox.");

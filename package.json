@@ -13,6 +13,7 @@
     "preflight": "node scripts/preflight.mjs"
   },
   "dependencies": {
+    "@auth0/auth0-react": "^2.29.0",
     "@sitecore-marketplace-sdk/client": "^0.3.6",
     "@sitecore-marketplace-sdk/xmc": "^0.4.2",
     "jose": "^5.10.0",
