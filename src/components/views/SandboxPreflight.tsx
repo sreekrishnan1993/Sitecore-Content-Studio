@@ -9,7 +9,7 @@ import { Badge } from "../ui";
 const TONE = { pass: "green", warn: "amber", fail: "red", skip: "outline" } as const;
 const LABEL = { pass: "Pass", warn: "Check", fail: "Fail", skip: "Skipped" } as const;
 
-/** Read-only checks to run inside Sitecore before a sandbox test. Creates and uploads nothing. */
+/** Read-only checks to run inside Sitecore (sandbox or production deployment). Creates and uploads nothing. */
 export function SandboxPreflight() {
   const { adapter, appContext, settings, connecting } = useIntegration();
   const caps = useServerCapabilities();
@@ -40,7 +40,7 @@ export function SandboxPreflight() {
   return (
     <section className="cs-card">
       <div className="cs-card-header">
-        <h2>Sandbox preflight</h2>
+        <h2>Preflight</h2>
         {checks && <Badge tone={failed ? "red" : "green"}>{failed ? `${failed} failed` : "Ready"}</Badge>}
       </div>
       <div className="cs-card-body cs-stack">

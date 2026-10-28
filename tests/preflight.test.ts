@@ -78,13 +78,26 @@ describe("CLI preflight: configuration", () => {
   it("fails unauthenticated mode on a deployment not marked as sandbox", () => {
     const results: Result[] = checkEnvironment({ ...sandboxEnv, CONTENT_STUDIO_DEPLOYMENT: "" });
     expect(byLabel(results, "Authentication")?.status).toBe("fail");
-    expect(byLabel(results, "Deployment marked as sandbox")?.status).toBe("fail");
+    expect(byLabel(results, "Deployment")?.status).toBe("fail");
   });
 
-  it("fails an unconfigured server, a missing tenant and secret-looking public variables", () => {
+  it("accepts a production deployment for any tenant; only missing sign-in fails", () => {
+    const results: Result[] = checkEnvironment({ NODE_ENV: "production", CONTENT_STUDIO_DEPLOYMENT: "production" });
+    expect(byLabel(results, "Deployment")).toMatchObject({ status: "pass", detail: expect.stringMatching(/whichever tenant/) });
+    expect(byLabel(results, "Sandbox tenant")).toBeUndefined();
+    expect(results.filter((r) => r.status === "fail").map((r) => r.label)).toEqual(["Authentication"]);
+  });
+
+  it("still fails unauthenticated mode on a production deployment", () => {
+    const results: Result[] = checkEnvironment({ ...sandboxEnv, CONTENT_STUDIO_DEPLOYMENT: "production" });
+    expect(byLabel(results, "Authentication")?.status).toBe("fail");
+    expect(byLabel(results, "Sandbox tenant")?.status).toBe("info");
+  });
+
+  it("fails an unconfigured server, an unmarked deployment and secret-looking public variables", () => {
     const results: Result[] = checkEnvironment({ NODE_ENV: "production", NEXT_PUBLIC_AUTH0_SECRET: "x" });
     expect(byLabel(results, "Authentication")?.status).toBe("fail");
-    expect(byLabel(results, "Sandbox tenant")?.status).toBe("fail");
+    expect(byLabel(results, "Deployment")?.status).toBe("fail");
     expect(byLabel(results, "Public variables")?.status).toBe("fail");
   });
 
@@ -105,7 +118,7 @@ describe("CLI preflight: server probe", () => {
     };
     return { impl: impl as unknown as typeof fetch, requests };
   }
-  const env = { NODE_ENV: "production", CONTENT_STUDIO_AUTH_MODE: "none", CONTENT_STUDIO_ALLOW_UNAUTHENTICATED: "true" };
+  const env = { NODE_ENV: "production", CONTENT_STUDIO_DEPLOYMENT: "sandbox", CONTENT_STUDIO_AUTH_MODE: "none", CONTENT_STUDIO_ALLOW_UNAUTHENTICATED: "true" };
 
   it("never sends a document and flags unauthenticated mode on a non-loopback host", async () => {
     const { impl, requests } = fakeFetch({ authMode: "none", deployment: "sandbox" }, 415);
@@ -125,6 +138,7 @@ describe("CLI preflight: server probe", () => {
     const { impl } = fakeFetch({ authMode: "misconfigured", deployment: "unmarked" }, 503);
     const results: Result[] = await checkServer("http://localhost:3000", env, impl);
     expect(byLabel(results, "Running auth mode")?.status).toBe("fail");
+    expect(byLabel(results, "Running deployment")?.status).toBe("fail");
   });
 });
 
@@ -207,6 +221,25 @@ describe("in-app preflight is read-only", () => {
     });
     const status = Object.fromEntries(checks.map((c) => [c.id, c.status]));
     expect(status).toMatchObject({ auth: "fail", deployment: "fail", target: "fail", extension: "warn", media: "warn", "sites-api": "fail" });
+  });
+
+  it("passes deployment and target for production in any tenant; missing sign-in still fails", async () => {
+    const { client } = recordingClient();
+    const adapter = new LiveSitecoreAdapter(client, "ctx-live", { templateRootPath: "/sitecore/templates/Project", experimentalMediaUpload: false }, "QA");
+    const checks = await runPreflight({
+      adapter,
+      // A tenant other than any configured sandbox tenant.
+      appContext: appContext([{ ...SANDBOX_RESOURCE, tenantName: "other-qa", tenantDisplayName: "Other / qa", tenantId: "t-qa", resourceId: "r-qa" }]),
+      capabilities: { ...SANDBOX_CAPS, deployment: "production", sandboxTenant: null, authMode: "misconfigured", urlImportEnabled: true },
+      templateRootPath: "/sitecore/templates/Project",
+      experimentalMediaUpload: false,
+      route: "/content-studio",
+    });
+    const byId = Object.fromEntries(checks.map((c) => [c.id, c]));
+    expect(byId.deployment).toMatchObject({ status: "pass", detail: expect.stringMatching(/whichever tenant/) });
+    expect(byId.target).toMatchObject({ status: "pass", detail: expect.stringMatching(/Other \/ qa.*go to this environment/) });
+    expect(byId["url-import"].status).toBe("pass");
+    expect(checks.filter((c) => c.status === "fail").map((c) => c.id)).toEqual(["auth"]);
   });
 
   it("skips Sitecore probes in demo mode", async () => {

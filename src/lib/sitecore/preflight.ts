@@ -48,17 +48,23 @@ export async function runPreflight(input: PreflightInput): Promise<PreflightChec
     add("server", "Extraction service", "fail", `Server configuration could not be read${input.capabilitiesError ? ` (${input.capabilitiesError})` : ""}.`);
   } else {
     if (caps.authMode === "auth0") add("auth", "API authentication", "pass", "auth0: access tokens are verified.");
-    else if (caps.authMode === "misconfigured") add("auth", "API authentication", "fail", "Not configured: the server refuses all extraction requests.");
+    else if (caps.authMode === "misconfigured") add("auth", "API authentication", "fail", "Not configured: the server refuses all document uploads and URL imports until sign-in is configured (CONTENT_STUDIO_AUTH_MODE=auth0).");
     else if (caps.deployment === "sandbox") add("auth", "API authentication", "warn", "none: unauthenticated. Acceptable only for a private, time-boxed sandbox with synthetic documents.");
     else add("auth", "API authentication", "fail", "none: unauthenticated on a deployment that is not marked CONTENT_STUDIO_DEPLOYMENT=sandbox.");
 
     add(
       "deployment",
-      "Deployment marked as sandbox",
-      caps.deployment === "sandbox" ? "pass" : "fail",
-      caps.deployment === "sandbox" ? "CONTENT_STUDIO_DEPLOYMENT=sandbox" : `CONTENT_STUDIO_DEPLOYMENT is "${caps.deployment}". Set it to "sandbox" for this test.`,
+      "Deployment",
+      caps.deployment === "unmarked" ? "fail" : "pass",
+      caps.deployment === "sandbox"
+        ? `sandbox: item creation and media upload are limited to the tenant "${caps.sandboxTenant ?? "(not set)"}".`
+        : caps.deployment === "production"
+          ? "production: the app works in whichever tenant opens it, with the signed-in user's Sitecore permissions."
+          : 'CONTENT_STUDIO_DEPLOYMENT is not set. Set it to "production" (any tenant) or "sandbox" (one test tenant).',
     );
-    add("url-import", "Publication URL import", caps.urlImportEnabled ? "warn" : "pass", caps.urlImportEnabled ? "Enabled. Not needed for the Sitecore test; consider CONTENT_STUDIO_ENABLE_URL_IMPORT=false." : "Disabled.");
+    // URL import is only questioned for a sandbox test, where it is not needed.
+    const urlWarn = caps.urlImportEnabled && caps.deployment === "sandbox";
+    add("url-import", "Publication URL import", urlWarn ? "warn" : "pass", caps.urlImportEnabled ? (urlWarn ? "Enabled. Not needed for the Sitecore test; consider CONTENT_STUDIO_ENABLE_URL_IMPORT=false." : "Enabled.") : "Disabled.");
   }
 
   // Target environment and Marketplace configuration
@@ -68,12 +74,13 @@ export async function runPreflight(input: PreflightInput): Promise<PreflightChec
     add("extension", "Extension point", "skip", "Not connected to Sitecore.");
   } else {
     const guard = sandboxWriteGuard(target, caps);
-    add(
-      "target",
-      "Target environment",
-      guard.allowed && guard.sandbox ? "pass" : "fail",
-      `${target?.label ?? "unknown"} (tenant ${target?.tenantName ?? target?.tenantId ?? "?"}, ${target?.resourceCount ?? 0} environment(s) granted)${guard.message ? `. ${guard.message}` : ""}`,
-    );
+    const where = `${target?.label ?? "unknown"} (tenant ${target?.tenantName ?? target?.tenantId ?? "?"}, ${target?.resourceCount ?? 0} environment(s) granted)`;
+    if (caps?.deployment === "production") {
+      // Not restricted to a tenant: the detected environment is where this session reads and writes.
+      add("target", "Target environment", target ? "pass" : "fail", target ? `${where}. Item creation and media upload go to this environment.` : "The host reported no Sitecore environment.");
+    } else {
+      add("target", "Target environment", guard.allowed && guard.sandbox ? "pass" : "fail", `${where}${guard.message ? `. ${guard.message}` : ""}`);
+    }
     const routes = extensionPointRoutes(appContext);
     const registered = routes.some((r) => r.split("?")[0].replace(/\/+$/, "").endsWith(input.route));
     add(

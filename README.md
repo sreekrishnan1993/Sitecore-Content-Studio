@@ -97,7 +97,7 @@ npm run typecheck
 npm test               # unit tests: extraction, mapping, whiteboard, live adapter (mocked SDK), security
 npm run build && npm start
 npm run fixtures       # writes sample PDF/DOCX/scanned files to tests/fixtures/generated/ for manual testing
-npm run preflight      # sandbox configuration check (see "Controlled sandbox validation")
+npm run preflight      # deployment configuration check (sandbox or production)
 npm run start:sandbox  # production server bound to 127.0.0.1:3000 only
 ```
 
@@ -319,7 +319,7 @@ Nothing in this repository enables unauthenticated mode by default in production
 
 **`npm run preflight [-- --url <base>]`** (`scripts/preflight.mjs`). It reads `.env*` files with Next.js precedence plus process variables, and exits 1 on any failure.
 - **Configuration checks:**
-  - the deployment is marked `sandbox` and the sandbox tenant is set;
+  - the deployment is marked: `production` (works in whichever tenant opens the app) or `sandbox` (then the sandbox tenant must be set). Unmarked fails;
   - the resolved auth mode, which mirrors `src/lib/security/auth.ts` and is tested against it. `none` on an unmarked deployment fails; an unconfigured production server fails;
   - URL import, numeric limits, and no secret-looking `NEXT_PUBLIC_*` variables;
   - the `frame-ancestors` actually compiled into `.next/routes-manifest.json`.
@@ -330,10 +330,10 @@ Nothing in this repository enables unauthenticated mode by default in production
   - unauthenticated mode at a non-loopback hostname is a failure.
 - **What it never does:** contact Sitecore, send a document, create content or upload media.
 
-**Settings → Sandbox preflight** (inside Sitecore). Read-only:
+**Settings → Preflight** (inside Sitecore). Read-only:
 - connection (live or demo);
-- server auth mode and sandbox marker;
-- target environment (tenant name and ID, number of environments granted, sandbox guard);
+- server auth mode and deployment (`production` or `sandbox`);
+- target environment: the tenant detected from the host (name and ID, number of environments granted). For `sandbox` it must match `CONTENT_STUDIO_SANDBOX_TENANT`; for `production` any tenant passes;
 - `/content-studio` extension-point registration (from `application.context`);
 - the media upload setting;
 - **Sites API** (`xmc.sites.listSites`, `xmc.sites.listLanguages`);
@@ -377,7 +377,7 @@ Record the result of every step.
 
 | # | Step | Expected result | If it fails |
 |---|---|---|---|
-| 0 | Open the app from the Fullscreen extension point. **Settings → Sandbox preflight → Run** | Badge **Live**. All checks pass except possibly *Extension point*; *Target environment* shows the sandbox tenant | Blank frame: check the console for a `frame-ancestors` error; set `CONTENT_STUDIO_FRAME_ANCESTORS` to the host origin and rebuild. *Target environment* fails: fix the resource access or `CONTENT_STUDIO_SANDBOX_TENANT`. API failures: check the API access settings and the user's role |
+| 0 | Open the app from the Fullscreen extension point. **Settings → Preflight → Run** | Badge **Live**. All checks pass except possibly *Extension point*; *Target environment* shows the sandbox tenant | Blank frame: check the console for a `frame-ancestors` error; set `CONTENT_STUDIO_FRAME_ANCESTORS` to the host origin and rebuild. *Target environment* fails: fix the resource access or `CONTENT_STUDIO_SANDBOX_TENANT`. API failures: check the API access settings and the user's role |
 | 1 | **Site discovery:** Template mapping → Site list | The sandbox site(s) are listed with display names | Permission message: the user's role. *Unexpected response*: record the raw response from the network log; the Sites API shape differs |
 | 2 | **Language discovery:** choose the site | The site's languages are listed (or the tenant languages) | Same as step 1 |
 | 3 | **Template and field discovery:** choose a test template | The "Select a content template" error clears and its sections and fields appear with the right types. In the Authoring GraphQL IDE, run `TEMPLATE_FIELDS_QUERY` from `src/lib/sitecore/graphql.ts` with the template ID and compare | Empty list: change the template root in Settings. GraphQL errors on `children` or `field`: record them; the template reader needs adapting |
@@ -403,7 +403,7 @@ Never retry creation while an *unknown* outcome is shown. Use **Check in Sitecor
 Run this once per configuration change. It creates **exactly one** unpublished item.
 
 1. **Confirm the sandbox environment.**
-   - Settings → *Sitecore integration* shows the tenant. Settings → *Sandbox preflight* must show **Target environment: Pass** and **createItem schema: Pass**.
+   - Settings → *Sitecore integration* shows the tenant. Settings → *Preflight* must show **Target environment: Pass** and **createItem schema: Pass**.
    - If *Target environment* fails with "CONTENT_STUDIO_SANDBOX_TENANT is not set", the message names the connected tenant. Put that value in `.env` as `CONTENT_STUDIO_SANDBOX_TENANT=<tenant name>`, restart the server, and run the preflight again.
    - *createItem schema* compares the tenant's real `createItem` input type with what the app sends, using read-only introspection. If it shows *Check* (introspection disabled), confirm in the GraphQL IDE that `createItem(input: { name, templateId, parent, language, fields: [{ name, value }] })` is valid.
 2. **Select a verified parent and a template.** In Template mapping, choose the template, enter the test folder path, select **Verify**, and wait for "Verified in Sitecore".

@@ -69,12 +69,24 @@ export function checkEnvironment(env, { projectDir } = {}) {
   const auth = resolveAuthMode(env);
   const deployment = deploymentOf(env);
 
-  add(deployment === "sandbox" ? "pass" : "fail", "Deployment marked as sandbox", deployment === "sandbox" ? "CONTENT_STUDIO_DEPLOYMENT=sandbox" : `CONTENT_STUDIO_DEPLOYMENT is "${deployment}"; set it to "sandbox".`);
   add(
-    env.CONTENT_STUDIO_SANDBOX_TENANT?.trim() ? "pass" : "fail",
-    "Sandbox tenant",
-    env.CONTENT_STUDIO_SANDBOX_TENANT?.trim() ? `Writes limited to "${env.CONTENT_STUDIO_SANDBOX_TENANT.trim()}"` : "CONTENT_STUDIO_SANDBOX_TENANT is not set; live writes will be disabled in the app.",
+    deployment === "unmarked" ? "fail" : "pass",
+    "Deployment",
+    deployment === "sandbox"
+      ? "CONTENT_STUDIO_DEPLOYMENT=sandbox: writes limited to one test tenant."
+      : deployment === "production"
+        ? "CONTENT_STUDIO_DEPLOYMENT=production: works in whichever tenant opens the app."
+        : 'CONTENT_STUDIO_DEPLOYMENT is not set; set it to "production" (any tenant) or "sandbox" (one test tenant).',
   );
+  if (deployment === "sandbox") {
+    add(
+      env.CONTENT_STUDIO_SANDBOX_TENANT?.trim() ? "pass" : "fail",
+      "Sandbox tenant",
+      env.CONTENT_STUDIO_SANDBOX_TENANT?.trim() ? `Writes limited to "${env.CONTENT_STUDIO_SANDBOX_TENANT.trim()}"` : "CONTENT_STUDIO_SANDBOX_TENANT is not set; live writes will be disabled in the app.",
+    );
+  } else if (env.CONTENT_STUDIO_SANDBOX_TENANT?.trim()) {
+    add("info", "Sandbox tenant", "CONTENT_STUDIO_SANDBOX_TENANT is set but only used when CONTENT_STUDIO_DEPLOYMENT=sandbox.");
+  }
 
   if (auth.mode === "misconfigured") add("fail", "Authentication", `Misconfigured: ${auth.reason} The server will refuse all extraction.`);
   else if (auth.mode === "auth0") {
@@ -117,6 +129,7 @@ export async function checkServer(baseUrl, env, fetchImpl = fetch) {
   const add = (status, label, detail) => out.push({ status, label, detail });
   const base = new URL(baseUrl);
   const expected = resolveAuthMode(env).mode;
+  const deployment = deploymentOf(env);
 
   let caps = null;
   try {
@@ -129,7 +142,7 @@ export async function checkServer(baseUrl, env, fetchImpl = fetch) {
   }
   if (caps) {
     add(caps.authMode === expected ? "pass" : "fail", "Running auth mode", caps.authMode === expected ? caps.authMode : `Server reports "${caps.authMode}" but this environment resolves to "${expected}". Was it started with different variables?`);
-    add(caps.deployment === "sandbox" ? "pass" : "fail", "Running deployment", `Server reports "${caps.deployment}"${caps.sandboxTenant ? `, tenant "${caps.sandboxTenant}"` : ""}.`);
+    add(caps.deployment === deployment && deployment !== "unmarked" ? "pass" : "fail", "Running deployment", `Server reports "${caps.deployment}"${caps.sandboxTenant ? `, tenant "${caps.sandboxTenant}"` : ""}${caps.deployment === deployment ? "" : `; this environment says "${deployment}"`}.`);
     if (caps.authMode === "none" && !LOOPBACK.has(base.hostname)) {
       add("fail", "Exposure", `Unauthenticated mode is being served at ${base.hostname}. Bind to 127.0.0.1 (npm run start:sandbox) or put an authenticating proxy in front.`);
     }

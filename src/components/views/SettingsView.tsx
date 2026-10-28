@@ -139,7 +139,7 @@ export function SettingsView() {
               <Capability
                 label="Sandbox deployment"
                 on={caps.data.deployment === "sandbox"}
-                detail={caps.data.deployment === "sandbox" ? `writes limited to tenant "${caps.data.sandboxTenant ?? "not set — writes disabled"}"` : caps.data.deployment}
+                detail={caps.data.deployment === "sandbox" ? `writes limited to tenant "${caps.data.sandboxTenant ?? "not set — writes disabled"}"` : caps.data.deployment === "production" ? "production — works in any tenant" : "not set"}
               />
             </ul>
           )}
