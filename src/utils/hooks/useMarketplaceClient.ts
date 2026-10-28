@@ -69,7 +69,7 @@ export function useMarketplaceClient(options: UseMarketplaceClientOptions = {}) 
   // Use ref to track if we're currently initializing to prevent race conditions
   const isInitializingRef = useRef(false);
 
-  const initializeClient = useCallback(async (attempt = 1): Promise<void> => {
+  const initializeClient = useCallback(async (): Promise<void> => {
     // Use functional state update to check current state without dependencies
     let shouldProceed = false;
     setState(prev => {
@@ -84,25 +84,32 @@ export function useMarketplaceClient(options: UseMarketplaceClientOptions = {}) 
     if (!shouldProceed) return;
 
     try {
-      const client = await getMarketplaceClient();
-      setState({
-        client,
-        error: null,
-        isLoading: false,
-        isInitialized: true,
-      });
-    } catch (error) {
-      if (attempt < opts.retryAttempts) {
-        await new Promise(resolve => setTimeout(resolve, opts.retryDelay));
-        return initializeClient(attempt + 1);
-      }
+      // Retry in a loop: a recursive call would be rejected by the in-progress guard above.
+      for (let attempt = 1; ; attempt++) {
+        try {
+          const client = await getMarketplaceClient();
+          setState({
+            client,
+            error: null,
+            isLoading: false,
+            isInitialized: true,
+          });
+          return;
+        } catch (error) {
+          if (attempt < opts.retryAttempts) {
+            await new Promise(resolve => setTimeout(resolve, opts.retryDelay));
+            continue;
+          }
 
-      setState({
-        client: null,
-        error: error instanceof Error ? error : new Error('Failed to initialize MarketplaceClient'),
-        isLoading: false,
-        isInitialized: false,
-      });
+          setState({
+            client: null,
+            error: error instanceof Error ? error : new Error('Failed to initialize MarketplaceClient'),
+            isLoading: false,
+            isInitialized: false,
+          });
+          return;
+        }
+      }
     } finally {
       isInitializingRef.current = false;
     }

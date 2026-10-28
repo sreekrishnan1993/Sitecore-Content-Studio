@@ -1,0 +1,133 @@
+"use client";
+
+import type { ReactNode } from "react";
+import type { ContentOrigin, ContentType } from "@/src/lib/types/extraction";
+import { CONTENT_TYPE_LABELS } from "@/src/lib/types/extraction";
+
+const PATHS: Record<string, string> = {
+  home: "M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z",
+  upload: "M12 16V4m0 0-4 4m4-4 4 4M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3",
+  clock: "M12 7v5l3 2m6-2a9 9 0 1 1-18 0 9 9 0 0 1 18 0",
+  template: "M4 4h16v5H4zm0 7h7v9H4zm10 0h6v9h-6z",
+  image: "M4 5h16v14H4zm0 11 5-5 4 4 3-3 4 4M15 9.5a1.5 1.5 0 1 0 0-.01",
+  settings: "M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6m7.4-3a7.5 7.5 0 0 0-.1-1.2l2-1.6-2-3.4-2.4 1a7.6 7.6 0 0 0-2-1.2L14.5 3h-4l-.4 2.6a7.6 7.6 0 0 0-2 1.2l-2.4-1-2 3.4 2 1.6a7.5 7.5 0 0 0 0 2.4l-2 1.6 2 3.4 2.4-1a7.6 7.6 0 0 0 2 1.2l.4 2.6h4l.4-2.6a7.6 7.6 0 0 0 2-1.2l2.4 1 2-3.4-2-1.6c.1-.4.1-.8.1-1.2",
+  file: "M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8zm0 0v5h5",
+  grip: "M9 6h.01M15 6h.01M9 12h.01M15 12h.01M9 18h.01M15 18h.01",
+  copy: "M9 9h10v11H9zM5 15V4h10",
+  duplicate: "M8 8h12v12H8zM4 16V4h12m-2 10h-4m2-2v4",
+  trash: "M4 7h16M10 11v6m4-6v6M6 7l1 13h10l1-13M9 7V4h6v3",
+  plus: "M12 5v14M5 12h14",
+  check: "m5 12 5 5 9-10",
+  x: "M6 6l12 12M18 6 6 18",
+  up: "m6 15 6-6 6 6",
+  down: "m6 9 6 6 6-6",
+  info: "M12 8h.01M11 12h1v5h1m8-5a9 9 0 1 1-18 0 9 9 0 0 1 18 0",
+  alert: "M12 9v4m0 4h.01M10.3 3.9 2.4 18a2 2 0 0 0 1.7 3h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0",
+  link: "M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1m-2 7.4-1 1a4 4 0 0 1-5.7-5.7l3-3a4 4 0 0 1 5.7 0",
+  eye: "M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12m10 3a3 3 0 1 0 0-6 3 3 0 0 0 0 6",
+  sparkle: "M12 3v4m0 10v4M3 12h4m10 0h4M6 6l2.5 2.5m7 7L18 18M6 18l2.5-2.5m7-7L18 6",
+  edit: "M4 20h4L19 9l-4-4L4 16zM14 6l4 4",
+  map: "M9 4 3 6v14l6-2 6 2 6-2V4l-6 2zm0 0v14m6-12v14",
+  arrowRight: "M5 12h14m-6-6 6 6-6 6",
+  arrowLeft: "M19 12H5m6-6-6 6 6 6",
+  globe: "M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18m-9-9h18M12 3c2.5 2.7 3.5 5.7 3.5 9s-1 6.3-3.5 9c-2.5-2.7-3.5-5.7-3.5-9s1-6.3 3.5-9",
+};
+
+export type IconName = keyof typeof PATHS;
+
+export function Icon({ name, size = 16, label }: { name: IconName; size?: number; label?: string }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden={label ? undefined : true} role={label ? "img" : undefined} aria-label={label}>
+      <path d={PATHS[name]} />
+    </svg>
+  );
+}
+
+export function Badge({ tone, children, title }: { tone?: "purple" | "green" | "amber" | "red" | "blue" | "outline"; children: ReactNode; title?: string }) {
+  return (
+    <span className={`cs-badge${tone ? ` cs-${tone}` : ""}`} title={title}>
+      {children}
+    </span>
+  );
+}
+
+export function Alert({ tone, title, children }: { tone: "info" | "warning" | "error" | "success"; title?: string; children?: ReactNode }) {
+  const icon: IconName = tone === "success" ? "check" : tone === "info" ? "info" : "alert";
+  return (
+    <div className={`cs-alert cs-${tone}`} role={tone === "error" ? "alert" : "status"}>
+      <Icon name={icon} />
+      <div className="cs-stack" style={{ gap: 4 }}>
+        {title && <strong>{title}</strong>}
+        {children && <div>{children}</div>}
+      </div>
+    </div>
+  );
+}
+
+export function EmptyState({ icon, title, children, action }: { icon: IconName; title: string; children?: ReactNode; action?: ReactNode }) {
+  return (
+    <div className="cs-empty">
+      <div className="cs-empty-icon">
+        <Icon name={icon} size={22} />
+      </div>
+      <h3>{title}</h3>
+      {children && <p style={{ maxWidth: 460 }}>{children}</p>}
+      {action}
+    </div>
+  );
+}
+
+export const TYPE_COLORS: Record<ContentType, string> = {
+  headline: "#5b3cc4",
+  subheading: "#7b61d6",
+  summary: "#1f5fbf",
+  body: "#5d6474",
+  list: "#4a5a8c",
+  quote: "#b0458a",
+  statistic: "#17703f",
+  cta: "#c2620a",
+  caption: "#8a6d3b",
+  seo: "#0f7c8c",
+  link: "#3d6fd9",
+};
+
+export function TypeBadge({ type, label }: { type: ContentType; label?: string }) {
+  return (
+    <span className="cs-row" style={{ gap: 6, fontSize: 12, fontWeight: 600 }}>
+      <span className="cs-type-dot" style={{ background: TYPE_COLORS[type] }} aria-hidden />
+      {CONTENT_TYPE_LABELS[type]}
+      {label && <span className="cs-muted" style={{ fontWeight: 500 }}>· {label}</span>}
+    </span>
+  );
+}
+
+const ORIGIN_INFO: Record<ContentOrigin, { label: string; tone: "green" | "blue" | "amber" | "outline"; title: string }> = {
+  extracted: { label: "Extracted", tone: "green", title: "Verbatim text from the source document" },
+  derived: { label: "Derived", tone: "blue", title: "Generated deterministically from extracted text (e.g. truncated). Review before use." },
+  "ai-suggestion": { label: "AI suggestion", tone: "amber", title: "Generated by an AI provider. Not source text." },
+  manual: { label: "Author", tone: "outline", title: "Written or copied by the author" },
+};
+
+export function OriginBadge({ origin, edited }: { origin: ContentOrigin; edited?: boolean }) {
+  const info = ORIGIN_INFO[origin];
+  return (
+    <span className="cs-row" style={{ gap: 4 }}>
+      <Badge tone={info.tone} title={info.title}>
+        {info.label}
+      </Badge>
+      {edited && origin !== "manual" && (
+        <Badge tone="outline" title="The author changed this text; it no longer matches the source verbatim.">
+          Edited
+        </Badge>
+      )}
+    </span>
+  );
+}
+
+export function FileTypeIcon({ type }: { type: "pdf" | "docx" | "html" }) {
+  return (
+    <span className={`cs-file-icon ${type}`} aria-hidden>
+      {type.toUpperCase()}
+    </span>
+  );
+}
