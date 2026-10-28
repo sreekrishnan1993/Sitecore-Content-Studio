@@ -98,9 +98,10 @@ function Bridge({ children, diagnostics }: { children: ReactNode; diagnostics: s
 export function ApiAuthProvider({ children }: { children: ReactNode }) {
   const { appContext } = useIntegration();
   const resources = appContext?.resourceAccess ?? appContext?.resources ?? [];
-  // Sign-in must use the tenant Sitecore opened the app in, which it passes in the launch URL.
-  // The first granted resource is only a fallback: it can belong to a different tenant.
-  const urlTenant = launchParam("tenantId", "tenant_id");
+  // Sign-in needs the Marketplace app tenant (marketplaceAppTenantId in the launch URL), not the
+  // environment tenant in resourceAccess.
+  // The granted resource is only a fallback for hosts that do not pass it.
+  const urlTenant = launchParam("marketplaceAppTenantId", "tenantId", "tenant_id");
   const tenantId = urlTenant ?? resources[0]?.tenantId;
   const organizationId = launchParam("organizationId", "organization_id", "organization") ?? appContext?.organizationId;
   if (!API_AUTH.clientId || !appContext) return <>{children}</>;
