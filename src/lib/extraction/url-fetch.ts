@@ -177,6 +177,8 @@ export interface FetchOptions {
   allowedPorts?: string[];
   timeoutMs?: number;
   maxBytes?: number;
+  /** Accept header. Defaults to HTML and PDF (publication pages). */
+  accept?: string;
 }
 
 export interface FetchedDocument {
@@ -192,7 +194,9 @@ interface RawResponse {
   bytes: Uint8Array;
 }
 
-function requestOnce(url: URL, lookup: LookupFunction, signal: AbortSignal, maxBytes: number): Promise<RawResponse> {
+const PAGE_ACCEPT = "text/html,application/xhtml+xml,application/pdf;q=0.9";
+
+function requestOnce(url: URL, lookup: LookupFunction, signal: AbortSignal, maxBytes: number, accept: string): Promise<RawResponse> {
   const transport = url.protocol === "https:" ? https : http;
   return new Promise((resolve, reject) => {
     const req = transport.request(
@@ -204,7 +208,7 @@ function requestOnce(url: URL, lookup: LookupFunction, signal: AbortSignal, maxB
         agent: false,
         headers: {
           "user-agent": "ContentStudio/1.0 (+Sitecore Marketplace app)",
-          accept: "text/html,application/xhtml+xml,application/pdf;q=0.9",
+          accept,
           "accept-encoding": "identity",
         },
       },
@@ -262,7 +266,7 @@ export async function fetchPublication(input: string, options: FetchOptions = {}
 
     let response: RawResponse;
     try {
-      response = await requestOnce(url, lookup, signal, maxBytes);
+      response = await requestOnce(url, lookup, signal, maxBytes, options.accept ?? PAGE_ACCEPT);
     } catch (error) {
       if (error instanceof ExtractionError) throw error;
       const code = (error as NodeJS.ErrnoException)?.code;

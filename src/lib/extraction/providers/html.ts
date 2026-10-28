@@ -89,11 +89,9 @@ export const htmlProvider: DocumentExtractionProvider = {
         height,
         sourceAltText: img.getAttribute("alt")?.trim() || undefined,
         src,
+        // Downloaded and checked afterwards (see remote-images.ts); until then only the URL is known.
         origin: "referenced",
       });
-    }
-    if (images.length > 0) {
-      warnings.push({ code: "parser-warning", message: "Publication images are referenced by URL, not downloaded. Their size and format are verified only when they are uploaded." });
     }
 
     return {

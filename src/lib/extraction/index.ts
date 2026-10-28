@@ -6,6 +6,7 @@ import { docxProvider } from "./providers/docx";
 import { htmlProvider } from "./providers/html";
 import { pdfProvider } from "./providers/pdf";
 import { ExtractionError, type DocumentExtractionProvider } from "./providers/types";
+import { downloadReferencedImages } from "./remote-images";
 import { fetchPublication } from "./url-fetch";
 
 export { ExtractionError } from "./providers/types";
@@ -43,7 +44,8 @@ export async function extractPublicationUrl(url: string): Promise<ExtractionResu
     return enhance(await providers.pdf.extract({ bytes: fetched.bytes, fileName, sourceUrl }));
   }
   if (fetched.contentType === "text/html" || fetched.contentType === "application/xhtml+xml") {
-    return enhance(await providers.html.extract({ bytes: fetched.bytes, fileName, sourceUrl }));
+    // Page images are downloaded so they can be uploaded to the Media Library like document images.
+    return enhance(await downloadReferencedImages(await providers.html.extract({ bytes: fetched.bytes, fileName, sourceUrl })));
   }
   throw new ExtractionError("unsupported-type", `The URL returned "${fetched.contentType || "unknown content"}". Only HTML pages and PDFs can be imported.`, 415);
 }

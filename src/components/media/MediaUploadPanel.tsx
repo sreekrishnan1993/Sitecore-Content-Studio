@@ -50,6 +50,7 @@ export function MediaUploadPanel() {
     const asset = workspace.images.find((a) => a.id === img.id);
     return asset?.selected && img.origin === "extracted" && img.src.startsWith("data:") && !checkMediaImage(img.mimeType, img.byteSize) && !asset.mediaUpload;
   });
+  const linkedOnly = workspace.extraction.images.filter((img) => img.origin === "referenced" && workspace.images.find((a) => a.id === img.id)?.selected).length;
   const folderValid = mediaLibraryRelativePath(folder) !== null;
   const missing = [!workspace.mapping.siteKey && "a site (on the Upload page)", !workspace.mapping.language && "a language"].filter(Boolean);
 
@@ -151,6 +152,13 @@ export function MediaUploadPanel() {
         {folder && <span className="cs-hint">Selected: {folder}</span>}
       </div>
       {missing.length > 0 && <p className="cs-small cs-muted">Select {missing.join(" and ")} before uploading.</p>}
+      {candidates.length === 0 && !running && (
+        <p className="cs-small cs-muted">
+          {linkedOnly > 0
+            ? `${linkedOnly} selected image(s) are only linked from the web page, not downloaded, so they cannot be uploaded. Download them from the page and add them in the Media Library.`
+            : "No selected images are waiting to be uploaded. Select images above; images already uploaded, or in an unsupported format or size, are not uploaded again."}
+        </p>
+      )}
       {guard.message && <Alert tone={guard.allowed ? "warning" : "error"}>{guard.message}</Alert>}
       {confirming ? (
         <Alert tone="warning" title={`Upload ${candidates.length} image(s) to ${folder}?`}>
