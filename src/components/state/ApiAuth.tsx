@@ -17,6 +17,17 @@ export const API_AUTH = {
   audience: process.env.NEXT_PUBLIC_CONTENT_STUDIO_AUTH0_AUDIENCE?.trim() || "https://api-webapp.sitecorecloud.io",
 };
 
+// The query string Sitecore opened the app with. Captured at load, before any client-side navigation.
+const LAUNCH_PARAMS = typeof window !== "undefined" ? new URLSearchParams(window.location.search) : new URLSearchParams();
+
+function launchParam(...names: string[]): string | undefined {
+  for (const name of names) {
+    const value = LAUNCH_PARAMS.get(name)?.trim();
+    if (value) return value;
+  }
+  return undefined;
+}
+
 export interface ApiAuthState {
   /** A client ID is configured and the app runs inside Sitecore, so sign-in is available. */
   available: boolean;
@@ -24,6 +35,8 @@ export interface ApiAuthState {
   isAuthenticated: boolean;
   userName?: string;
   error?: string;
+  /** The organization, tenant and product sent to sign-in, and where the tenant came from. Shown when sign-in fails. */
+  diagnostics?: string;
   signIn: () => Promise<void>;
   signOut: () => void;
 }
@@ -44,7 +57,7 @@ function describe(error: unknown): string {
 }
 
 /** Bridges Auth0 into the app: registers the token provider and exposes the sign-in state. */
-function Bridge({ children }: { children: ReactNode }) {
+function Bridge({ children, diagnostics }: { children: ReactNode; diagnostics: string }) {
   const { isLoading, isAuthenticated, user, error, getAccessTokenSilently, loginWithPopup, logout } = useAuth0();
 
   useEffect(() => {
@@ -67,11 +80,12 @@ function Bridge({ children }: { children: ReactNode }) {
       isAuthenticated,
       userName: user?.name ?? user?.email,
       error: error ? describe(error) : undefined,
+      diagnostics,
       // A pop-up, because Sitecore's sign-in page cannot be shown inside the app's iframe.
       signIn: () => loginWithPopup(),
       signOut: () => logout({ openUrl: false }),
     }),
-    [isLoading, isAuthenticated, user, error, loginWithPopup, logout],
+    [isLoading, isAuthenticated, user, error, diagnostics, loginWithPopup, logout],
   );
   return <ApiAuthContext.Provider value={value}>{children}</ApiAuthContext.Provider>;
 }
@@ -83,11 +97,23 @@ function Bridge({ children }: { children: ReactNode }) {
  */
 export function ApiAuthProvider({ children }: { children: ReactNode }) {
   const { appContext } = useIntegration();
-  const tenantId = (appContext?.resourceAccess ?? appContext?.resources)?.[0]?.tenantId;
+  const resources = appContext?.resourceAccess ?? appContext?.resources ?? [];
+  // Sign-in must use the tenant Sitecore opened the app in, which it passes in the launch URL.
+  // The first granted resource is only a fallback: it can belong to a different tenant.
+  const urlTenant = launchParam("tenantId", "tenant_id");
+  const tenantId = urlTenant ?? resources[0]?.tenantId;
+  const organizationId = launchParam("organizationId", "organization_id", "organization") ?? appContext?.organizationId;
   if (!API_AUTH.clientId || !appContext) return <>{children}</>;
+  const diagnostics = [
+    `tenant_id ${tenantId ?? "(none)"} (from ${urlTenant ? "launch URL" : "application context"})`,
+    `organization_id ${organizationId ?? "(none)"}`,
+    `product_codes mkp_${appContext.id}`,
+    `tenants granted: ${resources.map((r) => `${r.tenantName ?? "?"}=${r.tenantId ?? "?"}`).join(", ") || "none"}`,
+    `launch URL parameters: ${[...LAUNCH_PARAMS.keys()].join(", ") || "none"}`,
+  ].join("; ");
   return (
     <Auth0Provider
-      key={`${appContext.organizationId ?? ""}|${tenantId ?? ""}`}
+      key={`${organizationId ?? ""}|${tenantId ?? ""}`}
       domain={API_AUTH.domain}
       clientId={API_AUTH.clientId}
       // Refresh tokens in local storage: silent renewal through a hidden iframe fails in browsers
@@ -100,12 +126,12 @@ export function ApiAuthProvider({ children }: { children: ReactNode }) {
         scope: "openid profile email offline_access",
         redirect_uri: `${window.location.origin}/content-studio`,
         // Parameters Sitecore's sign-in expects for a Marketplace app.
-        organization_id: appContext.organizationId,
+        organization_id: organizationId,
         tenant_id: tenantId,
         product_codes: `mkp_${appContext.id}`,
       }}
     >
-      <Bridge>{children}</Bridge>
+      <Bridge diagnostics={diagnostics}>{children}</Bridge>
     </Auth0Provider>
   );
 }

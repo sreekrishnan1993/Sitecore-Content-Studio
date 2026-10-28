@@ -185,6 +185,7 @@ export function UploadStep({ onDone }: { onDone: () => void }) {
               {auth.isLoading ? <span className="cs-spinner" aria-hidden /> : null} Sign in with Sitecore
             </button>
             {(signInError ?? auth.error) && <span style={{ display: "block", marginTop: 6, color: "var(--cs-danger)" }}>{signInError ?? auth.error}</span>}
+            {(signInError ?? auth.error) && auth.diagnostics && <span className="cs-small cs-muted" style={{ display: "block", marginTop: 4, wordBreak: "break-all" }}>Sent: {auth.diagnostics}</span>}
           </Alert>
         ) : (
           <Alert tone="warning" title="Sign-in is not available here">
