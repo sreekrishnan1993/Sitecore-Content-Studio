@@ -92,8 +92,8 @@ function Bridge({ children, diagnostics }: { children: ReactNode; diagnostics: s
 
 /**
  * Wraps the app in Auth0 when a client ID is configured and Content Studio is connected to Sitecore.
- * The organization, tenant and app come from the Marketplace application context, so one deployment
- * signs users in for whichever tenant opened it.
+ * The organization and tenant come from the launch URL and the app from the application context,
+ * so one deployment signs users in for whichever tenant opened it.
  */
 export function ApiAuthProvider({ children }: { children: ReactNode }) {
   const { appContext } = useIntegration();

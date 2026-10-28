@@ -43,11 +43,13 @@ export interface WriteGuard {
 /**
  * In a deployment marked as a sandbox (CONTENT_STUDIO_DEPLOYMENT=sandbox), writes are allowed only
  * when the app has access to exactly one environment and it matches CONTENT_STUDIO_SANDBOX_TENANT
- * (tenant name, display name, tenant ID or resource ID). Other deployments are not restricted,
- * but are labelled as not being a sandbox.
+ * (tenant name, display name, tenant ID or resource ID). Production deployments are not restricted;
+ * unmarked deployments are not restricted either, but carry a warning.
  */
 export function sandboxWriteGuard(target: TargetEnvironment | null, caps: ServerCapabilities | null | undefined): WriteGuard {
   if (!caps) return { allowed: false, sandbox: false, message: "The server configuration could not be read, so the target environment cannot be confirmed." };
+  // A production deployment is meant to work in any tenant: nothing to warn about.
+  if (caps.deployment === "production") return { allowed: true, sandbox: false };
   if (caps.deployment !== "sandbox") {
     return { allowed: true, sandbox: false, message: "This deployment is not marked as a sandbox (CONTENT_STUDIO_DEPLOYMENT)." };
   }

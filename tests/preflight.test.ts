@@ -178,7 +178,8 @@ describe("sandbox write guard", () => {
   });
 
   it("does not restrict deployments that are not marked as sandbox, but labels them", () => {
-    expect(sandboxWriteGuard(target, { ...SANDBOX_CAPS, deployment: "production" })).toMatchObject({ allowed: true, sandbox: false });
+    expect(sandboxWriteGuard(target, { ...SANDBOX_CAPS, deployment: "production" })).toEqual({ allowed: true, sandbox: false });
+    expect(sandboxWriteGuard(target, { ...SANDBOX_CAPS, deployment: "unmarked" })).toMatchObject({ allowed: true, sandbox: false, message: expect.stringContaining("not marked") });
   });
 });
 
