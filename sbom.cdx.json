@@ -1,0 +1,3893 @@
+{
+  "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "version": 1,
+  "serialNumber": "urn:uuid:14a73bff-f655-42cf-8272-fd357821fbf3",
+  "metadata": {
+    "timestamp": "2026-10-28T11:14:05.002Z",
+    "tools": {
+      "components": [
+        {
+          "type": "application",
+          "name": "npm",
+          "version": "11.16.0"
+        },
+        {
+          "type": "application",
+          "name": "cyclonedx-npm",
+          "group": "@cyclonedx",
+          "version": "4.2.1",
+          "author": "Jan Kowalleck",
+          "description": "Create CycloneDX Software Bill of Materials (SBOM) from NPM projects.",
+          "licenses": [
+            {
+              "license": {
+                "id": "Apache-2.0"
+              }
+            }
+          ],
+          "externalReferences": [
+            {
+              "url": "git+https://github.com/CycloneDX/cyclonedx-node-npm.git",
+              "type": "vcs",
+              "comment": "as detected from PackageJson property \"repository.url\""
+            },
+            {
+              "url": "https://github.com/CycloneDX/cyclonedx-node-npm#readme",
+              "type": "website",
+              "comment": "as detected from PackageJson property \"homepage\""
+            },
+            {
+              "url": "https://github.com/CycloneDX/cyclonedx-node-npm/issues",
+              "type": "issue-tracker",
+              "comment": "as detected from PackageJson property \"bugs.url\""
+            }
+          ],
+          "properties": [
+            {
+              "name": "cdx:npm:package:constraint:engine:node",
+              "value": ">=20.18.0"
+            },
+            {
+              "name": "cdx:npm:package:constraint:engine:npm",
+              "value": ">=9"
+            }
+          ]
+        },
+        {
+          "type": "library",
+          "name": "cyclonedx-library",
+          "group": "@cyclonedx",
+          "version": "10.3.0",
+          "author": "Jan Kowalleck",
+          "description": "Core functionality of CycloneDX for JavaScript (Node.js or WebBrowser).",
+          "licenses": [
+            {
+              "license": {
+                "id": "Apache-2.0"
+              }
+            }
+          ],
+          "externalReferences": [
+            {
+              "url": "git+https://github.com/CycloneDX/cyclonedx-javascript-library.git",
+              "type": "vcs",
+              "comment": "as detected from PackageJson property \"repository.url\""
+            },
+            {
+              "url": "https://github.com/CycloneDX/cyclonedx-javascript-library#readme",
+              "type": "website",
+              "comment": "as detected from PackageJson property \"homepage\""
+            },
+            {
+              "url": "https://github.com/CycloneDX/cyclonedx-javascript-library/issues",
+              "type": "issue-tracker",
+              "comment": "as detected from PackageJson property \"bugs.url\""
+            }
+          ],
+          "properties": [
+            {
+              "name": "cdx:npm:package:constraint:engine:node",
+              "value": ">=20.18.0"
+            }
+          ]
+        }
+      ]
+    },
+    "component": {
+      "type": "application",
+      "name": "xmcloud-extension-starter",
+      "version": "1.0.0",
+      "bom-ref": "xmcloud-extension-starter@1.0.0",
+      "purl": "pkg:npm/xmcloud-extension-starter@1.0.0",
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": ""
+        }
+      ]
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "name": "auth0-react",
+      "group": "@auth0",
+      "version": "2.29.0",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|@auth0/auth0-react@2.29.0",
+      "author": "Auth0",
+      "description": "Auth0 SDK for React Single Page Applications (SPA)",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/%40auth0/auth0-react@2.29.0",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/auth0/auth0-react.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/auth0/auth0-react#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/auth0/auth0-react/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/@auth0/auth0-react/-/auth0-react-2.29.0.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/@auth0/auth0-react"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "client",
+      "group": "@sitecore-marketplace-sdk",
+      "version": "0.3.6",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|@sitecore-marketplace-sdk/client@0.3.6",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/%40sitecore-marketplace-sdk/client@0.3.6",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/Sitecore/sitecore-marketplace-sdk.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/Sitecore/sitecore-marketplace-sdk#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/Sitecore/sitecore-marketplace-sdk/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/@sitecore-marketplace-sdk/client/-/client-0.3.6.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:constraint:engine:node",
+          "value": ">=16"
+        },
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/@sitecore-marketplace-sdk/client"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "xmc",
+      "group": "@sitecore-marketplace-sdk",
+      "version": "0.4.2",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|@sitecore-marketplace-sdk/xmc@0.4.2",
+      "author": "Sitecore Corporation",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/%40sitecore-marketplace-sdk/xmc@0.4.2",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/Sitecore/sitecore-marketplace-sdk.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/Sitecore/sitecore-marketplace-sdk#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/Sitecore/sitecore-marketplace-sdk/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/@sitecore-marketplace-sdk/xmc/-/xmc-0.4.2.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/@sitecore-marketplace-sdk/xmc"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "jose",
+      "version": "5.10.0",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|jose@5.10.0",
+      "author": "Filip Skokan",
+      "description": "JWA, JWS, JWE, JWT, JWK, JWKS for Node.js, Browser, Cloudflare Workers, Deno, Bun, and other Web-interoperable runtimes",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/jose@5.10.0",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/panva/jose.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/panva/jose",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/panva/jose/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/jose/-/jose-5.10.0.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/jose"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "jszip",
+      "version": "3.10.2",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|jszip@3.10.2",
+      "author": "Stuart Knightley",
+      "description": "Create, read and edit .zip files with JavaScript http://stuartk.com/jszip",
+      "licenses": [
+        {
+          "expression": "(MIT OR GPL-3.0-or-later)",
+          "acknowledgement": "declared"
+        }
+      ],
+      "purl": "pkg:npm/jszip@3.10.2",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/Stuk/jszip.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/Stuk/jszip#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/Stuk/jszip/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/jszip/-/jszip-3.10.2.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/jszip"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "mammoth",
+      "version": "1.13.0",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|mammoth@1.13.0",
+      "author": "Michael Williamson",
+      "description": "Convert Word documents from docx to simple HTML and Markdown",
+      "licenses": [
+        {
+          "license": {
+            "id": "BSD-2-Clause",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/mammoth@1.13.0",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/mwilliamson/mammoth.js.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/mwilliamson/mammoth.js#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/mwilliamson/mammoth.js/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/mammoth/-/mammoth-1.13.0.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:constraint:engine:node",
+          "value": ">=12.0.0"
+        },
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/mammoth"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "next",
+      "version": "16.4.3",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|next@16.4.3",
+      "description": "The React Framework",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/next@16.4.3",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/vercel/next.js.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://nextjs.org",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/vercel/next.js/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/next/-/next-16.4.3.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:constraint:engine:node",
+          "value": ">=20.9.0"
+        },
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/next"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "node-html-parser",
+      "version": "9.0.5",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|node-html-parser@9.0.5",
+      "author": "Xiaoyi Shi",
+      "description": "A very fast HTML parser, generating a simplified DOM, with basic element query support.",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/node-html-parser@9.0.5",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/taoqf/node-fast-html-parser.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/taoqf/node-fast-html-parser",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/taoqf/node-fast-html-parser/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/node-html-parser/-/node-html-parser-9.0.5.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/node-html-parser"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "react-dom",
+      "version": "19.2.3",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|react-dom@19.2.3",
+      "description": "React package for working with the DOM.",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/react-dom@19.2.3",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/facebook/react.git#packages/react-dom",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\" and \"repository.directory\""
+        },
+        {
+          "url": "https://react.dev/",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/facebook/react/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/react-dom/-/react-dom-19.2.3.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/react-dom"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "react",
+      "version": "19.2.3",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|react@19.2.3",
+      "description": "React is a JavaScript library for building user interfaces.",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/react@19.2.3",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/facebook/react.git#packages/react",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\" and \"repository.directory\""
+        },
+        {
+          "url": "https://react.dev/",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/facebook/react/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/react/-/react-19.2.3.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:constraint:engine:node",
+          "value": ">=0.10.0"
+        },
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/react"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "unpdf",
+      "version": "1.9.1",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|unpdf@1.9.1",
+      "author": "Johann Schopplich",
+      "description": "PDF extraction and rendering across all JavaScript runtimes",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/unpdf@1.9.1",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/unjs/unpdf.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/unjs/unpdf#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/unjs/unpdf/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/unpdf/-/unpdf-1.9.1.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:constraint:engine:node",
+          "value": ">=22"
+        },
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/unpdf"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "auth0-spa-js",
+      "group": "@auth0",
+      "version": "2.29.0",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|@auth0/auth0-spa-js@2.29.0",
+      "author": "Auth0",
+      "description": "Auth0 SDK for Single Page Applications using Authorization Code Grant Flow with PKCE",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/%40auth0/auth0-spa-js@2.29.0",
+      "externalReferences": [
+        {
+          "url": "git://github.com/auth0/auth0-spa-js.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/auth0/auth0-spa-js#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/auth0/auth0-spa-js/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/@auth0/auth0-spa-js/-/auth0-spa-js-2.29.0.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/@auth0/auth0-spa-js"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "core",
+      "group": "@sitecore-marketplace-sdk",
+      "version": "0.3.5",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|@sitecore-marketplace-sdk/core@0.3.5",
+      "author": "Sitecore Corporation",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/%40sitecore-marketplace-sdk/core@0.3.5",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/Sitecore/sitecore-marketplace-sdk.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/Sitecore/sitecore-marketplace-sdk#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/Sitecore/sitecore-marketplace-sdk/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/@sitecore-marketplace-sdk/core/-/core-0.3.5.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/@sitecore-marketplace-sdk/core"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "tslib",
+      "version": "2.8.1",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|tslib@2.8.1",
+      "author": "Microsoft Corp.",
+      "description": "Runtime library for TypeScript helper functions",
+      "licenses": [
+        {
+          "license": {
+            "id": "0BSD",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/tslib@2.8.1",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/Microsoft/tslib.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://www.typescriptlang.org/",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/Microsoft/TypeScript/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/tslib/-/tslib-2.8.1.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/tslib"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "uuid",
+      "version": "11.1.1",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|uuid@11.1.1",
+      "description": "RFC9562 UUIDs",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/uuid@11.1.1",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/uuidjs/uuid.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/uuidjs/uuid#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/uuidjs/uuid/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/uuid/-/uuid-11.1.1.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/uuid"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "client-fetch",
+      "group": "@hey-api",
+      "version": "0.8.3",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|@hey-api/client-fetch@0.8.3",
+      "author": "Hey API",
+      "description": "🚀 Fetch API client for `@hey-api/openapi-ts` codegen.",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/%40hey-api/client-fetch@0.8.3",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/hey-api/openapi-ts.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://heyapi.dev/",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/hey-api/openapi-ts/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/@hey-api/client-fetch/-/client-fetch-0.8.3.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/@hey-api/client-fetch"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "lie",
+      "version": "3.3.0",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|lie@3.3.0",
+      "description": "A basic but performant promise implementation",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/lie@3.3.0",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/calvinmetcalf/lie.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/calvinmetcalf/lie#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/calvinmetcalf/lie/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/lie/-/lie-3.3.0.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/lie"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "pako",
+      "version": "1.0.11",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|pako@1.0.11",
+      "description": "zlib port to javascript - fast, modularized, with browser support",
+      "licenses": [
+        {
+          "expression": "(MIT AND Zlib)",
+          "acknowledgement": "declared"
+        }
+      ],
+      "purl": "pkg:npm/pako@1.0.11",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/nodeca/pako.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/nodeca/pako",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/nodeca/pako/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/pako/-/pako-1.0.11.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/pako"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "readable-stream",
+      "version": "2.3.8",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|readable-stream@2.3.8",
+      "description": "Streams3, a user-land copy of the stream library from Node.js",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/readable-stream@2.3.8",
+      "externalReferences": [
+        {
+          "url": "git://github.com/nodejs/readable-stream.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/nodejs/readable-stream#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/nodejs/readable-stream/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/readable-stream/-/readable-stream-2.3.8.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/readable-stream"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "setimmediate",
+      "version": "1.0.5",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|setimmediate@1.0.5",
+      "author": "YuzuJS",
+      "description": "A shim for the setImmediate efficient script yielding API",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/setimmediate@1.0.5",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/YuzuJS/setImmediate.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/YuzuJS/setImmediate#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/YuzuJS/setImmediate/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/setimmediate/-/setimmediate-1.0.5.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/setimmediate"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "xmldom",
+      "group": "@xmldom",
+      "version": "0.8.15",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|@xmldom/xmldom@0.8.15",
+      "description": "A pure JavaScript W3C standard-based (XML DOM Level 2 Core) DOMParser and XMLSerializer module.",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/%40xmldom/xmldom@0.8.15",
+      "externalReferences": [
+        {
+          "url": "git://github.com/xmldom/xmldom.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/xmldom/xmldom",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/xmldom/xmldom/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/@xmldom/xmldom/-/xmldom-0.8.15.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:constraint:engine:node",
+          "value": ">=10.0.0"
+        },
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/@xmldom/xmldom"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "argparse",
+      "version": "1.0.10",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|argparse@1.0.10",
+      "description": "Very powerful CLI arguments parser. Native port of argparse - python's options parsing library",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/argparse@1.0.10",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/nodeca/argparse.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/nodeca/argparse#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/nodeca/argparse/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/argparse/-/argparse-1.0.10.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/argparse"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "base64-js",
+      "version": "1.5.1",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|base64-js@1.5.1",
+      "author": "T. Jameson Little",
+      "description": "Base64 encoding/decoding in pure JS",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/base64-js@1.5.1",
+      "externalReferences": [
+        {
+          "url": "git://github.com/beatgammit/base64-js.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/beatgammit/base64-js",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/beatgammit/base64-js/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/base64-js/-/base64-js-1.5.1.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/base64-js"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "dingbat-to-unicode",
+      "version": "1.0.2",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|dingbat-to-unicode@1.0.2",
+      "author": "Michael Williamson",
+      "description": "Mapping from Dingbat fonts, such as Symbol, Webdings and Wingdings, to Unicode code points",
+      "licenses": [
+        {
+          "license": {
+            "id": "BSD-2-Clause",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/dingbat-to-unicode@1.0.2",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/mwilliamson/dingbat-to-unicode.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/mwilliamson/dingbat-to-unicode#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/mwilliamson/dingbat-to-unicode/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/dingbat-to-unicode/-/dingbat-to-unicode-1.0.2.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/dingbat-to-unicode"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "lop",
+      "version": "0.4.2",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|lop@0.4.2",
+      "author": "Michael Williamson",
+      "description": "Create parsers using parser combinators with helpful error messages",
+      "licenses": [
+        {
+          "license": {
+            "id": "BSD-2-Clause",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/lop@0.4.2",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/mwilliamson/lop.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/mwilliamson/lop#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/mwilliamson/lop/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/lop/-/lop-0.4.2.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/lop"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "underscore",
+      "version": "1.13.8",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|underscore@1.13.8",
+      "author": "Jeremy Ashkenas",
+      "description": "JavaScript's functional programming helper library.",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/underscore@1.13.8",
+      "externalReferences": [
+        {
+          "url": "git://github.com/jashkenas/underscore.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://underscorejs.org",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/jashkenas/underscore/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/underscore/-/underscore-1.13.8.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/underscore"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "xmlbuilder",
+      "version": "10.1.1",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|xmlbuilder@10.1.1",
+      "author": "Ozgur Ozcitak",
+      "description": "An XML builder for node.js",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/xmlbuilder@10.1.1",
+      "externalReferences": [
+        {
+          "url": "git://github.com/oozcitak/xmlbuilder-js.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "http://github.com/oozcitak/xmlbuilder-js",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "http://github.com/oozcitak/xmlbuilder-js/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/xmlbuilder/-/xmlbuilder-10.1.1.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:constraint:engine:node",
+          "value": ">=4.0"
+        },
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/xmlbuilder"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "env",
+      "group": "@next",
+      "version": "16.4.3",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|@next/env@16.4.3",
+      "author": "Next.js Team",
+      "description": "Next.js dotenv file loading",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/%40next/env@16.4.3",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/vercel/next.js.git#packages/next-env",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\" and \"repository.directory\""
+        },
+        {
+          "url": "https://github.com/vercel/next.js#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/vercel/next.js/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/@next/env/-/env-16.4.3.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/@next/env"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "swc-win32-x64-msvc",
+      "group": "@next",
+      "version": "16.4.3",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|@next/swc-win32-x64-msvc@16.4.3",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/%40next/swc-win32-x64-msvc@16.4.3",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/vercel/next.js.git#crates/next-napi-bindings/npm/win32-x64-msvc",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\" and \"repository.directory\""
+        },
+        {
+          "url": "https://github.com/vercel/next.js#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/vercel/next.js/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-16.4.3.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:constraint:engine:node",
+          "value": ">= 10"
+        },
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/@next/swc-win32-x64-msvc"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "helpers",
+      "group": "@swc",
+      "version": "0.5.23",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|@swc/helpers@0.5.23",
+      "author": "강동윤",
+      "description": "External helpers for the swc project.",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/%40swc/helpers@0.5.23",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/swc-project/swc.git#packages/helpers",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\" and \"repository.directory\""
+        },
+        {
+          "url": "https://swc.rs",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/swc-project/swc/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/@swc/helpers/-/helpers-0.5.23.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/@swc/helpers"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "baseline-browser-mapping",
+      "version": "2.11.33",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|baseline-browser-mapping@2.11.33",
+      "description": "A library for obtaining browser versions with their maximum supported Baseline feature set and Widely Available status.",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/baseline-browser-mapping@2.11.33",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/web-platform-dx/baseline-browser-mapping.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/web-platform-dx/baseline-browser-mapping#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/web-platform-dx/baseline-browser-mapping/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/baseline-browser-mapping/-/baseline-browser-mapping-2.11.33.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:constraint:engine:node",
+          "value": ">=6.0.0"
+        },
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/baseline-browser-mapping"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "caniuse-lite",
+      "version": "1.0.30001819",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|caniuse-lite@1.0.30001819",
+      "author": "Ben Briggs",
+      "description": "A smaller version of caniuse-db, with only the essentials!",
+      "licenses": [
+        {
+          "license": {
+            "id": "CC-BY-4.0",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/caniuse-lite@1.0.30001819",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/browserslist/caniuse-lite.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/browserslist/caniuse-lite#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/browserslist/caniuse-lite/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001819.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/caniuse-lite"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "postcss",
+      "version": "8.5.23",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|postcss@8.5.23",
+      "author": "Andrey Sitnik",
+      "description": "Tool for transforming styles with JS plugins",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/postcss@8.5.23",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/postcss/postcss.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://postcss.org/",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/postcss/postcss/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/postcss/-/postcss-8.5.23.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:constraint:engine:node",
+          "value": "^10 || ^12 || >=14"
+        },
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/postcss"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "sharp",
+      "version": "0.35.5",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|sharp@0.35.5",
+      "author": "Lovell Fuller",
+      "description": "High performance Node.js image processing, the fastest module to resize JPEG, PNG, WebP, GIF, AVIF and TIFF images",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/sharp@0.35.5",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/lovell/sharp.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://sharp.pixelplumbing.com",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/lovell/sharp/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/sharp/-/sharp-0.35.5.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:constraint:engine:node",
+          "value": ">=20.9.0"
+        },
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/sharp"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "styled-jsx",
+      "version": "5.1.6",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|styled-jsx@5.1.6",
+      "description": "Full CSS support for JSX without compromises",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/styled-jsx@5.1.6",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/vercel/styled-jsx.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/vercel/styled-jsx#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/vercel/styled-jsx/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/styled-jsx/-/styled-jsx-5.1.6.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:constraint:engine:node",
+          "value": ">= 12.0.0"
+        },
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/styled-jsx"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "css-select",
+      "version": "5.2.2",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|css-select@5.2.2",
+      "author": "Felix Boehm",
+      "description": "a CSS selector compiler/engine",
+      "licenses": [
+        {
+          "license": {
+            "id": "BSD-2-Clause",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/css-select@5.2.2",
+      "externalReferences": [
+        {
+          "url": "git://github.com/fb55/css-select.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/fb55/css-select#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/fb55/css-select/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/css-select/-/css-select-5.2.2.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/css-select"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "entities",
+      "version": "8.1.0",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|entities@8.1.0",
+      "author": "Felix Boehm",
+      "description": "Encode & decode XML and HTML entities with ease & speed",
+      "licenses": [
+        {
+          "license": {
+            "id": "BSD-2-Clause",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/entities@8.1.0",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/fb55/entities.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/fb55/entities#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/fb55/entities/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/entities/-/entities-8.1.0.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:constraint:engine:node",
+          "value": ">=20.19.0"
+        },
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/entities"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "scheduler",
+      "version": "0.27.0",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|scheduler@0.27.0",
+      "description": "Cooperative scheduler for the browser environment.",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/scheduler@0.27.0",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/facebook/react.git#packages/scheduler",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\" and \"repository.directory\""
+        },
+        {
+          "url": "https://react.dev/",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/facebook/react/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/scheduler/-/scheduler-0.27.0.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/scheduler"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "auth0-auth-js",
+      "group": "@auth0",
+      "version": "1.18.0",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|@auth0/auth0-auth-js@1.18.0",
+      "author": "Auth0",
+      "description": "Auth0 Authentication Client for JavaScript runtimes.",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/%40auth0/auth0-auth-js@1.18.0",
+      "externalReferences": [
+        {
+          "url": "git://github.com/auth0/auth0-auth-js.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/auth0/auth0-auth-js#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/auth0/auth0-auth-js/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/@auth0/auth0-auth-js/-/auth0-auth-js-1.18.0.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/@auth0/auth0-auth-js"
+        }
+      ],
+      "components": [
+        {
+          "type": "library",
+          "name": "jose",
+          "version": "6.2.13",
+          "bom-ref": "xmcloud-extension-starter@1.0.0|@auth0/auth0-auth-js@1.18.0|jose@6.2.13",
+          "author": "Filip Skokan",
+          "description": "JWA, JWS, JWE, JWT, JWK, JWKS for Node.js, Browser, Cloudflare Workers, Deno, Bun, and other Web-interoperable runtimes",
+          "licenses": [
+            {
+              "license": {
+                "id": "MIT",
+                "acknowledgement": "declared"
+              }
+            }
+          ],
+          "purl": "pkg:npm/jose@6.2.13",
+          "externalReferences": [
+            {
+              "url": "git+https://github.com/panva/jose.git",
+              "type": "vcs",
+              "comment": "as detected from PackageJson property \"repository.url\""
+            },
+            {
+              "url": "https://github.com/panva/jose",
+              "type": "website",
+              "comment": "as detected from PackageJson property \"homepage\""
+            },
+            {
+              "url": "https://github.com/panva/jose/issues",
+              "type": "issue-tracker",
+              "comment": "as detected from PackageJson property \"bugs.url\""
+            },
+            {
+              "url": "https://registry.npmjs.org/jose/-/jose-6.2.13.tgz",
+              "type": "distribution",
+              "comment": "as detected from npm-ls property \"resolved\""
+            }
+          ],
+          "properties": [
+            {
+              "name": "cdx:npm:package:path",
+              "value": "node_modules/@auth0/auth0-auth-js/node_modules/jose"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "browser-tabs-lock",
+      "version": "1.3.0",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|browser-tabs-lock@1.3.0",
+      "description": "provides locking mechanism to sync across browser tabs",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/browser-tabs-lock@1.3.0",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/supertokens/browser-tabs-lock.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/supertokens/browser-tabs-lock#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/supertokens/browser-tabs-lock/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/browser-tabs-lock/-/browser-tabs-lock-1.3.0.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/browser-tabs-lock"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "dpop",
+      "version": "2.1.2",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|dpop@2.1.2",
+      "author": "Filip Skokan",
+      "description": "DPoP (RFC9449) for JavaScript Runtimes",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/dpop@2.1.2",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/panva/dpop.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/panva/dpop",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/panva/dpop/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/dpop/-/dpop-2.1.2.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/dpop"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "es-cookie",
+      "version": "1.3.2",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|es-cookie@1.3.2",
+      "author": "Theodore Brown",
+      "description": "A JavaScript module for handling cookies",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/es-cookie@1.3.2",
+      "externalReferences": [
+        {
+          "url": "git://github.com/theodorejb/es-cookie.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/theodorejb/es-cookie",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/theodorejb/es-cookie/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/es-cookie/-/es-cookie-1.3.2.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/es-cookie"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "immediate",
+      "version": "3.0.6",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|immediate@3.0.6",
+      "description": "A cross browser microtask library",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/immediate@3.0.6",
+      "externalReferences": [
+        {
+          "url": "git://github.com/calvinmetcalf/immediate.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/calvinmetcalf/immediate#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/calvinmetcalf/immediate/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/immediate/-/immediate-3.0.6.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/immediate"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "core-util-is",
+      "version": "1.0.3",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|core-util-is@1.0.3",
+      "author": "Isaac Z. Schlueter",
+      "description": "The `util.is*` functions introduced in Node v0.12.",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/core-util-is@1.0.3",
+      "externalReferences": [
+        {
+          "url": "git://github.com/isaacs/core-util-is.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/isaacs/core-util-is#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/isaacs/core-util-is/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/core-util-is/-/core-util-is-1.0.3.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/core-util-is"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "inherits",
+      "version": "2.0.4",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|inherits@2.0.4",
+      "description": "Browser-friendly inheritance fully compatible with standard node.js inherits()",
+      "licenses": [
+        {
+          "license": {
+            "id": "ISC",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/inherits@2.0.4",
+      "externalReferences": [
+        {
+          "url": "git://github.com/isaacs/inherits.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/isaacs/inherits#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/isaacs/inherits/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/inherits/-/inherits-2.0.4.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/inherits"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "isarray",
+      "version": "1.0.0",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|isarray@1.0.0",
+      "author": "Julian Gruber",
+      "description": "Array#isArray for older browsers",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/isarray@1.0.0",
+      "externalReferences": [
+        {
+          "url": "git://github.com/juliangruber/isarray.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/juliangruber/isarray",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/juliangruber/isarray/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/isarray/-/isarray-1.0.0.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/isarray"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "process-nextick-args",
+      "version": "2.0.1",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|process-nextick-args@2.0.1",
+      "description": "process.nextTick but always with args",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/process-nextick-args@2.0.1",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/calvinmetcalf/process-nextick-args.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/calvinmetcalf/process-nextick-args",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/calvinmetcalf/process-nextick-args/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/process-nextick-args/-/process-nextick-args-2.0.1.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/process-nextick-args"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "safe-buffer",
+      "version": "5.1.2",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|safe-buffer@5.1.2",
+      "author": "Feross Aboukhadijeh",
+      "description": "Safer Node.js Buffer API",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/safe-buffer@5.1.2",
+      "externalReferences": [
+        {
+          "url": "git://github.com/feross/safe-buffer.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/feross/safe-buffer",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/feross/safe-buffer/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.1.2.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/safe-buffer"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "string_decoder",
+      "version": "1.1.1",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|string_decoder@1.1.1",
+      "description": "The string_decoder module from Node core",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/string_decoder@1.1.1",
+      "externalReferences": [
+        {
+          "url": "git://github.com/nodejs/string_decoder.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/nodejs/string_decoder",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/nodejs/string_decoder/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/string_decoder/-/string_decoder-1.1.1.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/string_decoder"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "util-deprecate",
+      "version": "1.0.2",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|util-deprecate@1.0.2",
+      "author": "Nathan Rajlich",
+      "description": "The Node.js `util.deprecate()` function with browser support",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/util-deprecate@1.0.2",
+      "externalReferences": [
+        {
+          "url": "git://github.com/TooTallNate/util-deprecate.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/TooTallNate/util-deprecate",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/TooTallNate/util-deprecate/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/util-deprecate"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "sprintf-js",
+      "version": "1.0.3",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|sprintf-js@1.0.3",
+      "author": "Alexandru Marasteanu",
+      "description": "JavaScript sprintf implementation",
+      "licenses": [
+        {
+          "license": {
+            "id": "BSD-3-Clause",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/sprintf-js@1.0.3",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/alexei/sprintf.js.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/alexei/sprintf.js#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/alexei/sprintf.js/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/sprintf-js/-/sprintf-js-1.0.3.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/sprintf-js"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "duck",
+      "version": "0.1.12",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|duck@0.1.12",
+      "author": "Michael Williamson",
+      "description": "Rich matchers inspired by Hamcrest. Useful for generating helpful assertion failure messages in tests.",
+      "licenses": [
+        {
+          "license": {
+            "name": "BSD",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/duck@0.1.12",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/mwilliamson/duck.js.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/mwilliamson/duck.js#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/mwilliamson/duck.js/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/duck/-/duck-0.1.12.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/duck"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "option",
+      "version": "0.2.4",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|option@0.2.4",
+      "author": "Michael Williamson",
+      "description": "The option type, also known as the maybe type, for JavaScript",
+      "licenses": [
+        {
+          "license": {
+            "id": "BSD-2-Clause",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/option@0.2.4",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/mwilliamson/node-options.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/mwilliamson/node-options#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/mwilliamson/node-options/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/option/-/option-0.2.4.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/option"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "nanoid",
+      "version": "3.3.20",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|nanoid@3.3.20",
+      "author": "Andrey Sitnik",
+      "description": "A tiny (116 bytes), secure URL-friendly unique string ID generator",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/nanoid@3.3.20",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/ai/nanoid.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/ai/nanoid#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/ai/nanoid/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/nanoid/-/nanoid-3.3.20.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:constraint:engine:node",
+          "value": "^10 || ^12 || ^13.7 || ^14 || >=15.0.1"
+        },
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/nanoid"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "picocolors",
+      "version": "1.1.1",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|picocolors@1.1.1",
+      "author": "Alexey Raspopov",
+      "description": "The tiniest and the fastest library for terminal output formatting with ANSI colors",
+      "licenses": [
+        {
+          "license": {
+            "id": "ISC",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/picocolors@1.1.1",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/alexeyraspopov/picocolors.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/alexeyraspopov/picocolors#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/alexeyraspopov/picocolors/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/picocolors/-/picocolors-1.1.1.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/picocolors"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "source-map-js",
+      "version": "1.2.2",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|source-map-js@1.2.2",
+      "author": "Valentin 7rulnik Semirulnik",
+      "description": "Generates and consumes source maps",
+      "licenses": [
+        {
+          "license": {
+            "id": "BSD-3-Clause",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/source-map-js@1.2.2",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/7rulnik/source-map-js.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/7rulnik/source-map-js",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/7rulnik/source-map-js/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/source-map-js/-/source-map-js-1.2.2.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:constraint:engine:node",
+          "value": ">=0.10.0"
+        },
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/source-map-js"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "colour",
+      "group": "@img",
+      "version": "1.1.0",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|@img/colour@1.1.0",
+      "description": "The ESM-only 'color' package made compatible for use with CommonJS runtimes",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/%40img/colour@1.1.0",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/lovell/colour.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/lovell/colour#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/lovell/colour/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/@img/colour/-/colour-1.1.0.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:constraint:engine:node",
+          "value": ">=18"
+        },
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/@img/colour"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "sharp-win32-x64",
+      "group": "@img",
+      "version": "0.35.5",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|@img/sharp-win32-x64@0.35.5",
+      "author": "Lovell Fuller",
+      "description": "Prebuilt sharp for use with Windows x64",
+      "licenses": [
+        {
+          "expression": "Apache-2.0 AND LGPL-3.0-or-later",
+          "acknowledgement": "declared"
+        }
+      ],
+      "purl": "pkg:npm/%40img/sharp-win32-x64@0.35.5",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/lovell/sharp.git#npm/win32-x64",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\" and \"repository.directory\""
+        },
+        {
+          "url": "https://sharp.pixelplumbing.com",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/lovell/sharp/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/@img/sharp-win32-x64/-/sharp-win32-x64-0.35.5.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:constraint:engine:node",
+          "value": ">=20.9.0"
+        },
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/@img/sharp-win32-x64"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "detect-libc",
+      "version": "2.1.2",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|detect-libc@2.1.2",
+      "author": "Lovell Fuller",
+      "description": "Node.js module to detect the C standard library (libc) implementation family and version",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/detect-libc@2.1.2",
+      "externalReferences": [
+        {
+          "url": "git://github.com/lovell/detect-libc.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/lovell/detect-libc#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/lovell/detect-libc/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/detect-libc/-/detect-libc-2.1.2.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:constraint:engine:node",
+          "value": ">=8"
+        },
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/detect-libc"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "semver",
+      "version": "7.8.5",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|semver@7.8.5",
+      "author": "GitHub Inc.",
+      "description": "The semantic version parser used by npm.",
+      "licenses": [
+        {
+          "license": {
+            "id": "ISC",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/semver@7.8.5",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/npm/node-semver.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/npm/node-semver#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/npm/node-semver/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/semver/-/semver-7.8.5.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:constraint:engine:node",
+          "value": ">=10"
+        },
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/semver"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "client-only",
+      "version": "0.0.1",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|client-only@0.0.1",
+      "description": "This is a marker package to indicate that a module can only be used in Client Components.",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/client-only@0.0.1",
+      "externalReferences": [
+        {
+          "url": "https://reactjs.org/",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/facebook/react/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/client-only/-/client-only-0.0.1.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/client-only"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "boolbase",
+      "version": "1.0.0",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|boolbase@1.0.0",
+      "author": "Felix Boehm",
+      "description": "two functions: One that returns true, one that returns false",
+      "licenses": [
+        {
+          "license": {
+            "id": "ISC",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/boolbase@1.0.0",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/fb55/boolbase.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/fb55/boolbase",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/fb55/boolbase/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/boolbase/-/boolbase-1.0.0.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/boolbase"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "css-what",
+      "version": "6.2.2",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|css-what@6.2.2",
+      "author": "Felix Böhm",
+      "description": "a CSS selector parser",
+      "licenses": [
+        {
+          "license": {
+            "id": "BSD-2-Clause",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/css-what@6.2.2",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/fb55/css-what.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/fb55/css-what#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/fb55/css-what/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/css-what/-/css-what-6.2.2.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:constraint:engine:node",
+          "value": ">= 6"
+        },
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/css-what"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "domhandler",
+      "version": "5.0.3",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|domhandler@5.0.3",
+      "author": "Felix Boehm",
+      "description": "Handler for htmlparser2 that turns pages into a dom",
+      "licenses": [
+        {
+          "license": {
+            "id": "BSD-2-Clause",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/domhandler@5.0.3",
+      "externalReferences": [
+        {
+          "url": "git://github.com/fb55/domhandler.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/fb55/domhandler#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/fb55/domhandler/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/domhandler/-/domhandler-5.0.3.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:constraint:engine:node",
+          "value": ">= 4"
+        },
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/domhandler"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "domutils",
+      "version": "3.2.2",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|domutils@3.2.2",
+      "author": "Felix Boehm",
+      "description": "Utilities for working with htmlparser2's dom",
+      "licenses": [
+        {
+          "license": {
+            "id": "BSD-2-Clause",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/domutils@3.2.2",
+      "externalReferences": [
+        {
+          "url": "git://github.com/fb55/domutils.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/fb55/domutils#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/fb55/domutils/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/domutils/-/domutils-3.2.2.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/domutils"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "nth-check",
+      "version": "2.1.1",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|nth-check@2.1.1",
+      "author": "Felix Boehm",
+      "description": "Parses and compiles CSS nth-checks to highly optimized functions.",
+      "licenses": [
+        {
+          "license": {
+            "id": "BSD-2-Clause",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/nth-check@2.1.1",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/fb55/nth-check.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/fb55/nth-check",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/fb55/nth-check/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/nth-check/-/nth-check-2.1.1.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/nth-check"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "openid-client",
+      "version": "6.8.8",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|openid-client@6.8.8",
+      "author": "Filip Skokan",
+      "description": "OAuth 2 / OpenID Connect Client API for JavaScript Runtimes",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/openid-client@6.8.8",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/panva/openid-client.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/panva/openid-client",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/panva/openid-client/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/openid-client/-/openid-client-6.8.8.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/openid-client"
+        }
+      ],
+      "components": [
+        {
+          "type": "library",
+          "name": "jose",
+          "version": "6.2.13",
+          "bom-ref": "xmcloud-extension-starter@1.0.0|openid-client@6.8.8|jose@6.2.13",
+          "author": "Filip Skokan",
+          "description": "JWA, JWS, JWE, JWT, JWK, JWKS for Node.js, Browser, Cloudflare Workers, Deno, Bun, and other Web-interoperable runtimes",
+          "licenses": [
+            {
+              "license": {
+                "id": "MIT",
+                "acknowledgement": "declared"
+              }
+            }
+          ],
+          "purl": "pkg:npm/jose@6.2.13",
+          "externalReferences": [
+            {
+              "url": "git+https://github.com/panva/jose.git",
+              "type": "vcs",
+              "comment": "as detected from PackageJson property \"repository.url\""
+            },
+            {
+              "url": "https://github.com/panva/jose",
+              "type": "website",
+              "comment": "as detected from PackageJson property \"homepage\""
+            },
+            {
+              "url": "https://github.com/panva/jose/issues",
+              "type": "issue-tracker",
+              "comment": "as detected from PackageJson property \"bugs.url\""
+            },
+            {
+              "url": "https://registry.npmjs.org/jose/-/jose-6.2.13.tgz",
+              "type": "distribution",
+              "comment": "as detected from npm-ls property \"resolved\""
+            }
+          ],
+          "properties": [
+            {
+              "name": "cdx:npm:package:path",
+              "value": "node_modules/openid-client/node_modules/jose"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "lodash",
+      "version": "4.18.1",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|lodash@4.18.1",
+      "author": "John-David Dalton",
+      "description": "Lodash modular utilities.",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/lodash@4.18.1",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/lodash/lodash.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://lodash.com/",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/lodash/lodash/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/lodash/-/lodash-4.18.1.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/lodash"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "domelementtype",
+      "version": "2.3.0",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|domelementtype@2.3.0",
+      "author": "Felix Boehm",
+      "description": "all the types of nodes in htmlparser2's dom",
+      "licenses": [
+        {
+          "license": {
+            "id": "BSD-2-Clause",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/domelementtype@2.3.0",
+      "externalReferences": [
+        {
+          "url": "git://github.com/fb55/domelementtype.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/fb55/domelementtype#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/fb55/domelementtype/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/domelementtype/-/domelementtype-2.3.0.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/domelementtype"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "dom-serializer",
+      "version": "2.0.0",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|dom-serializer@2.0.0",
+      "author": "Felix Boehm",
+      "description": "render domhandler DOM nodes to a string",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/dom-serializer@2.0.0",
+      "externalReferences": [
+        {
+          "url": "git://github.com/cheeriojs/dom-serializer.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/cheeriojs/dom-serializer#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/cheeriojs/dom-serializer/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/dom-serializer/-/dom-serializer-2.0.0.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/dom-serializer"
+        }
+      ],
+      "components": [
+        {
+          "type": "library",
+          "name": "entities",
+          "version": "4.5.0",
+          "bom-ref": "xmcloud-extension-starter@1.0.0|dom-serializer@2.0.0|entities@4.5.0",
+          "author": "Felix Boehm",
+          "description": "Encode & decode XML and HTML entities with ease & speed",
+          "licenses": [
+            {
+              "license": {
+                "id": "BSD-2-Clause",
+                "acknowledgement": "declared"
+              }
+            }
+          ],
+          "purl": "pkg:npm/entities@4.5.0",
+          "externalReferences": [
+            {
+              "url": "git://github.com/fb55/entities.git",
+              "type": "vcs",
+              "comment": "as detected from PackageJson property \"repository.url\""
+            },
+            {
+              "url": "https://github.com/fb55/entities#readme",
+              "type": "website",
+              "comment": "as detected from PackageJson property \"homepage\""
+            },
+            {
+              "url": "https://github.com/fb55/entities/issues",
+              "type": "issue-tracker",
+              "comment": "as detected from PackageJson property \"bugs.url\""
+            },
+            {
+              "url": "https://registry.npmjs.org/entities/-/entities-4.5.0.tgz",
+              "type": "distribution",
+              "comment": "as detected from npm-ls property \"resolved\""
+            }
+          ],
+          "properties": [
+            {
+              "name": "cdx:npm:package:constraint:engine:node",
+              "value": ">=0.12"
+            },
+            {
+              "name": "cdx:npm:package:path",
+              "value": "node_modules/dom-serializer/node_modules/entities"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "oauth4webapi",
+      "version": "3.8.8",
+      "bom-ref": "xmcloud-extension-starter@1.0.0|oauth4webapi@3.8.8",
+      "author": "Filip Skokan",
+      "description": "Low-Level OAuth 2 / OpenID Connect Client API for JavaScript Runtimes",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/oauth4webapi@3.8.8",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/panva/oauth4webapi.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/panva/oauth4webapi",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/panva/oauth4webapi/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        },
+        {
+          "url": "https://registry.npmjs.org/oauth4webapi/-/oauth4webapi-3.8.8.tgz",
+          "type": "distribution",
+          "comment": "as detected from npm-ls property \"resolved\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/oauth4webapi"
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "xmcloud-extension-starter@1.0.0",
+      "dependsOn": [
+        "xmcloud-extension-starter@1.0.0|@auth0/auth0-react@2.29.0",
+        "xmcloud-extension-starter@1.0.0|@sitecore-marketplace-sdk/client@0.3.6",
+        "xmcloud-extension-starter@1.0.0|@sitecore-marketplace-sdk/xmc@0.4.2",
+        "xmcloud-extension-starter@1.0.0|jose@5.10.0",
+        "xmcloud-extension-starter@1.0.0|jszip@3.10.2",
+        "xmcloud-extension-starter@1.0.0|mammoth@1.13.0",
+        "xmcloud-extension-starter@1.0.0|next@16.4.3",
+        "xmcloud-extension-starter@1.0.0|node-html-parser@9.0.5",
+        "xmcloud-extension-starter@1.0.0|react-dom@19.2.3",
+        "xmcloud-extension-starter@1.0.0|react@19.2.3",
+        "xmcloud-extension-starter@1.0.0|unpdf@1.9.1"
+      ]
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|@auth0/auth0-react@2.29.0",
+      "dependsOn": [
+        "xmcloud-extension-starter@1.0.0|@auth0/auth0-spa-js@2.29.0",
+        "xmcloud-extension-starter@1.0.0|react-dom@19.2.3",
+        "xmcloud-extension-starter@1.0.0|react@19.2.3"
+      ]
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|@sitecore-marketplace-sdk/client@0.3.6",
+      "dependsOn": [
+        "xmcloud-extension-starter@1.0.0|@sitecore-marketplace-sdk/core@0.3.5",
+        "xmcloud-extension-starter@1.0.0|tslib@2.8.1",
+        "xmcloud-extension-starter@1.0.0|uuid@11.1.1"
+      ]
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|@sitecore-marketplace-sdk/xmc@0.4.2",
+      "dependsOn": [
+        "xmcloud-extension-starter@1.0.0|@hey-api/client-fetch@0.8.3",
+        "xmcloud-extension-starter@1.0.0|@sitecore-marketplace-sdk/client@0.3.6"
+      ]
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|jose@5.10.0"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|jszip@3.10.2",
+      "dependsOn": [
+        "xmcloud-extension-starter@1.0.0|lie@3.3.0",
+        "xmcloud-extension-starter@1.0.0|pako@1.0.11",
+        "xmcloud-extension-starter@1.0.0|readable-stream@2.3.8",
+        "xmcloud-extension-starter@1.0.0|setimmediate@1.0.5"
+      ]
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|mammoth@1.13.0",
+      "dependsOn": [
+        "xmcloud-extension-starter@1.0.0|@xmldom/xmldom@0.8.15",
+        "xmcloud-extension-starter@1.0.0|argparse@1.0.10",
+        "xmcloud-extension-starter@1.0.0|base64-js@1.5.1",
+        "xmcloud-extension-starter@1.0.0|dingbat-to-unicode@1.0.2",
+        "xmcloud-extension-starter@1.0.0|jszip@3.10.2",
+        "xmcloud-extension-starter@1.0.0|lop@0.4.2",
+        "xmcloud-extension-starter@1.0.0|underscore@1.13.8",
+        "xmcloud-extension-starter@1.0.0|xmlbuilder@10.1.1"
+      ]
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|next@16.4.3",
+      "dependsOn": [
+        "xmcloud-extension-starter@1.0.0|@next/env@16.4.3",
+        "xmcloud-extension-starter@1.0.0|@next/swc-win32-x64-msvc@16.4.3",
+        "xmcloud-extension-starter@1.0.0|@swc/helpers@0.5.23",
+        "xmcloud-extension-starter@1.0.0|baseline-browser-mapping@2.11.33",
+        "xmcloud-extension-starter@1.0.0|caniuse-lite@1.0.30001819",
+        "xmcloud-extension-starter@1.0.0|postcss@8.5.23",
+        "xmcloud-extension-starter@1.0.0|react-dom@19.2.3",
+        "xmcloud-extension-starter@1.0.0|react@19.2.3",
+        "xmcloud-extension-starter@1.0.0|sharp@0.35.5",
+        "xmcloud-extension-starter@1.0.0|styled-jsx@5.1.6"
+      ]
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|node-html-parser@9.0.5",
+      "dependsOn": [
+        "xmcloud-extension-starter@1.0.0|css-select@5.2.2",
+        "xmcloud-extension-starter@1.0.0|entities@8.1.0"
+      ]
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|react-dom@19.2.3",
+      "dependsOn": [
+        "xmcloud-extension-starter@1.0.0|react@19.2.3",
+        "xmcloud-extension-starter@1.0.0|scheduler@0.27.0"
+      ]
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|react@19.2.3"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|unpdf@1.9.1"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|@auth0/auth0-spa-js@2.29.0",
+      "dependsOn": [
+        "xmcloud-extension-starter@1.0.0|@auth0/auth0-auth-js@1.18.0",
+        "xmcloud-extension-starter@1.0.0|browser-tabs-lock@1.3.0",
+        "xmcloud-extension-starter@1.0.0|dpop@2.1.2",
+        "xmcloud-extension-starter@1.0.0|es-cookie@1.3.2"
+      ]
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|@sitecore-marketplace-sdk/core@0.3.5",
+      "dependsOn": [
+        "xmcloud-extension-starter@1.0.0|tslib@2.8.1",
+        "xmcloud-extension-starter@1.0.0|uuid@11.1.1"
+      ]
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|tslib@2.8.1"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|uuid@11.1.1"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|@hey-api/client-fetch@0.8.3"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|lie@3.3.0",
+      "dependsOn": [
+        "xmcloud-extension-starter@1.0.0|immediate@3.0.6"
+      ]
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|pako@1.0.11"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|readable-stream@2.3.8",
+      "dependsOn": [
+        "xmcloud-extension-starter@1.0.0|core-util-is@1.0.3",
+        "xmcloud-extension-starter@1.0.0|inherits@2.0.4",
+        "xmcloud-extension-starter@1.0.0|isarray@1.0.0",
+        "xmcloud-extension-starter@1.0.0|process-nextick-args@2.0.1",
+        "xmcloud-extension-starter@1.0.0|safe-buffer@5.1.2",
+        "xmcloud-extension-starter@1.0.0|string_decoder@1.1.1",
+        "xmcloud-extension-starter@1.0.0|util-deprecate@1.0.2"
+      ]
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|setimmediate@1.0.5"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|@xmldom/xmldom@0.8.15"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|argparse@1.0.10",
+      "dependsOn": [
+        "xmcloud-extension-starter@1.0.0|sprintf-js@1.0.3"
+      ]
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|base64-js@1.5.1"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|dingbat-to-unicode@1.0.2"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|lop@0.4.2",
+      "dependsOn": [
+        "xmcloud-extension-starter@1.0.0|duck@0.1.12",
+        "xmcloud-extension-starter@1.0.0|option@0.2.4",
+        "xmcloud-extension-starter@1.0.0|underscore@1.13.8"
+      ]
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|underscore@1.13.8"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|xmlbuilder@10.1.1"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|@next/env@16.4.3"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|@next/swc-win32-x64-msvc@16.4.3"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|@swc/helpers@0.5.23",
+      "dependsOn": [
+        "xmcloud-extension-starter@1.0.0|tslib@2.8.1"
+      ]
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|baseline-browser-mapping@2.11.33"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|caniuse-lite@1.0.30001819"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|postcss@8.5.23",
+      "dependsOn": [
+        "xmcloud-extension-starter@1.0.0|nanoid@3.3.20",
+        "xmcloud-extension-starter@1.0.0|picocolors@1.1.1",
+        "xmcloud-extension-starter@1.0.0|source-map-js@1.2.2"
+      ]
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|sharp@0.35.5",
+      "dependsOn": [
+        "xmcloud-extension-starter@1.0.0|@img/colour@1.1.0",
+        "xmcloud-extension-starter@1.0.0|@img/sharp-win32-x64@0.35.5",
+        "xmcloud-extension-starter@1.0.0|detect-libc@2.1.2",
+        "xmcloud-extension-starter@1.0.0|semver@7.8.5"
+      ]
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|styled-jsx@5.1.6",
+      "dependsOn": [
+        "xmcloud-extension-starter@1.0.0|client-only@0.0.1",
+        "xmcloud-extension-starter@1.0.0|react@19.2.3"
+      ]
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|css-select@5.2.2",
+      "dependsOn": [
+        "xmcloud-extension-starter@1.0.0|boolbase@1.0.0",
+        "xmcloud-extension-starter@1.0.0|css-what@6.2.2",
+        "xmcloud-extension-starter@1.0.0|domhandler@5.0.3",
+        "xmcloud-extension-starter@1.0.0|domutils@3.2.2",
+        "xmcloud-extension-starter@1.0.0|nth-check@2.1.1"
+      ]
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|entities@8.1.0"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|scheduler@0.27.0"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|@auth0/auth0-auth-js@1.18.0",
+      "dependsOn": [
+        "xmcloud-extension-starter@1.0.0|@auth0/auth0-auth-js@1.18.0|jose@6.2.13",
+        "xmcloud-extension-starter@1.0.0|openid-client@6.8.8"
+      ]
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|@auth0/auth0-auth-js@1.18.0|jose@6.2.13"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|browser-tabs-lock@1.3.0",
+      "dependsOn": [
+        "xmcloud-extension-starter@1.0.0|lodash@4.18.1"
+      ]
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|dpop@2.1.2"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|es-cookie@1.3.2"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|immediate@3.0.6"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|core-util-is@1.0.3"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|inherits@2.0.4"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|isarray@1.0.0"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|process-nextick-args@2.0.1"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|safe-buffer@5.1.2"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|string_decoder@1.1.1",
+      "dependsOn": [
+        "xmcloud-extension-starter@1.0.0|safe-buffer@5.1.2"
+      ]
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|util-deprecate@1.0.2"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|sprintf-js@1.0.3"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|duck@0.1.12",
+      "dependsOn": [
+        "xmcloud-extension-starter@1.0.0|underscore@1.13.8"
+      ]
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|option@0.2.4"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|nanoid@3.3.20"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|picocolors@1.1.1"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|source-map-js@1.2.2"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|@img/colour@1.1.0"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|@img/sharp-win32-x64@0.35.5"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|detect-libc@2.1.2"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|semver@7.8.5"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|client-only@0.0.1"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|boolbase@1.0.0"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|css-what@6.2.2"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|domhandler@5.0.3",
+      "dependsOn": [
+        "xmcloud-extension-starter@1.0.0|domelementtype@2.3.0"
+      ]
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|domutils@3.2.2",
+      "dependsOn": [
+        "xmcloud-extension-starter@1.0.0|dom-serializer@2.0.0",
+        "xmcloud-extension-starter@1.0.0|domelementtype@2.3.0",
+        "xmcloud-extension-starter@1.0.0|domhandler@5.0.3"
+      ]
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|nth-check@2.1.1",
+      "dependsOn": [
+        "xmcloud-extension-starter@1.0.0|boolbase@1.0.0"
+      ]
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|openid-client@6.8.8",
+      "dependsOn": [
+        "xmcloud-extension-starter@1.0.0|openid-client@6.8.8|jose@6.2.13",
+        "xmcloud-extension-starter@1.0.0|oauth4webapi@3.8.8"
+      ]
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|openid-client@6.8.8|jose@6.2.13"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|lodash@4.18.1"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|domelementtype@2.3.0"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|dom-serializer@2.0.0",
+      "dependsOn": [
+        "xmcloud-extension-starter@1.0.0|domelementtype@2.3.0",
+        "xmcloud-extension-starter@1.0.0|domhandler@5.0.3",
+        "xmcloud-extension-starter@1.0.0|dom-serializer@2.0.0|entities@4.5.0"
+      ]
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|dom-serializer@2.0.0|entities@4.5.0"
+    },
+    {
+      "ref": "xmcloud-extension-starter@1.0.0|oauth4webapi@3.8.8"
+    }
+  ]
+}

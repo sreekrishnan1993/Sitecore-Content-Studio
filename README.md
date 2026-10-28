@@ -183,7 +183,7 @@ Add a fixture expressing the same structure to `tests/structure.test.ts` ("equiv
 | `none` | No authentication. Default in development. In production it also requires `CONTENT_STUDIO_ALLOW_UNAUTHENTICATED=true`. Use it only for a controlled sandbox. |
 | *(unset in production)* | **Fails closed:** every POST returns 503 and the UI disables uploads. |
 
-**Browser sign-in** (`src/components/state/ApiAuth.tsx`). Create *Single Page App* client credentials for the app in the Cloud Portal (no client secret is used). When Content Studio runs inside Sitecore and `NEXT_PUBLIC_CONTENT_STUDIO_AUTH0_CLIENT_ID` is set, `@auth0/auth0-react` signs the user in with Sitecore in a pop-up (Sitecore's sign-in page cannot be shown inside the iframe). The organization, tenant and app (`organization_id`, `tenant_id`, `product_codes=mkp_<app ID>`) come from the Marketplace application context, so one deployment serves every tenant. Refresh tokens are kept in local storage because silent renewal through a hidden iframe fails when third-party cookies are blocked. `getAccessTokenSilently` is registered with `setApiTokenProvider()` (`src/lib/security/client-auth.ts`), and each upload sends the token as a bearer token. The token only proves who is calling Content Studio's API; Sitecore content is still read and written through the Marketplace SDK.
+**Browser sign-in** (`src/components/state/ApiAuth.tsx`). Create *Single Page App* client credentials for the app in the Cloud Portal (no client secret is used). When Content Studio runs inside Sitecore and `NEXT_PUBLIC_CONTENT_STUDIO_AUTH0_CLIENT_ID` is set, `@auth0/auth0-react` signs the user in with Sitecore in a pop-up (Sitecore's sign-in page cannot be shown inside the iframe). The organization and tenant come from the query string Sitecore opens the app with (`organizationId`, `marketplaceAppTenantId`), and the app from the application context (`product_codes=mkp_<app ID>`), so one deployment serves every tenant. The tenant must be `marketplaceAppTenantId`: the environment tenant in `resourceAccess` is rejected with "Tenant parameters do not match. (AUTH-APL50-17)". If sign-in fails, the Upload page shows the values that were sent. Refresh tokens are kept in local storage because silent renewal through a hidden iframe fails when third-party cookies are blocked. `getAccessTokenSilently` is registered with `setApiTokenProvider()` (`src/lib/security/client-auth.ts`), and each upload sends the token as a bearer token. The token only proves who is calling Content Studio's API; Sitecore content is still read and written through the Marketplace SDK.
 
 Example for a public deployment (Vercel project settings; `NEXT_PUBLIC_*` values are built into the browser code, so redeploy after changing them):
 
@@ -219,9 +219,26 @@ The in-process limits protect one server instance only. **Platform-level rate li
 
 **Headers.** `/content-studio` and `/api/extract` send:
 - `Content-Security-Policy: frame-ancestors …` (default `'self' https://*.sitecorecloud.io`; override with `CONTENT_STUDIO_FRAME_ANCESTORS` **at build time**);
+- `Strict-Transport-Security: max-age=63072000; includeSubDomains` (no preload);
 - `object-src 'none'`, `nosniff`, a referrer policy and a permissions policy.
 
 Starter routes are unchanged.
+
+**Audit logging** (`src/lib/security/audit.ts`). Every POST to `/api/extract` writes JSON lines to stdout, one per event, each with a UTC ISO-8601 `ts`, the `event`, its `outcome` and a `requestId` (Vercel's request ID when present):
+
+| Event | When | Extra fields |
+|---|---|---|
+| `auth.success` | Token verified | `subject`, `organization`, `client`, `authMode` |
+| `auth.failure` | Token missing or rejected | `reason` (for example `missing-token`, `ERR_JWT_EXPIRED`, `client-not-allowed`), `status` |
+| `auth.misconfigured` | Server authentication not configured | `reason`, `status` |
+| `request.rejected` | Cross-site, rate-limited or busy | user fields, `reason`, `status` |
+| `extract.started` / `extract.succeeded` / `extract.failed` | Document or URL processing | user fields, `kind`, `extension`, `bytes` or `host`, `code`, `status`, `durationMs` |
+
+Tokens, document content, file names and full URLs are never logged. To make the log tamper-resistant:
+1. Forward it from the hosting platform to an append-only store with a retention policy (for Vercel: *Settings → Log Drains*, to your SIEM or log service; Vercel's own runtime logs are short-lived).
+2. Set `CONTENT_STUDIO_AUDIT_HMAC_KEY` (a long random secret, server only). Every record then carries `sig`, an HMAC-SHA256 over its other fields, so edited or forged entries can be detected with `signAuditRecord`.
+
+**Software bill of materials.** `npm run sbom` writes `sbom.cdx.json` (CycloneDX, production dependencies). Regenerate it after dependency changes; run `npm audit --omit=dev` before each release.
 
 ## Demo mode vs live mode
 
@@ -268,11 +285,12 @@ An attempt is recorded as *pending* before the request is sent. If the page relo
 | `CONTENT_STUDIO_TRUSTED_IP_HEADER` | — | Header set by *your* proxy that holds the client IP (e.g. `x-real-ip`) |
 | `CONTENT_STUDIO_MAX_UPLOAD_MB` | `15` | Upload limit (max 50) |
 | `CONTENT_STUDIO_ENABLE_URL_IMPORT` | `true` | `false` disables server-side URL fetching |
+| `CONTENT_STUDIO_AUDIT_HMAC_KEY` | — | **Secret.** Signs each audit record (HMAC-SHA256) so tampering is detectable |
 | `CONTENT_STUDIO_FRAME_ANCESTORS` | `'self' https://*.sitecorecloud.io` | Allowed embedding hosts. **Read at build time** |
 | `CONTENT_STUDIO_DEPLOYMENT` | *(unset = unmarked)* | `sandbox` or `production`. `sandbox` enables the sandbox write guard below. Does not change authentication |
 | `CONTENT_STUDIO_SANDBOX_TENANT` | — | With `sandbox`: the only tenant (name, display name, tenant ID or resource ID) that live creation and media upload may target. Not secret: `GET /api/extract` reports it |
 
-No secrets are needed for `none` mode, and the Auth0 settings above are not secrets. Never put secrets in `NEXT_PUBLIC_*` variables.
+No secrets are needed for `none` mode, and the Auth0 settings above are not secrets. The only secret is `CONTENT_STUDIO_AUDIT_HMAC_KEY`. Never put secrets in `NEXT_PUBLIC_*` variables.
 
 ## Marketplace configuration
 

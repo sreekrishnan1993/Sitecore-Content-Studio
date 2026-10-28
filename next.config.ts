@@ -7,6 +7,8 @@ const frameAncestors = process.env.CONTENT_STUDIO_FRAME_ANCESTORS?.trim() || "'s
 
 const contentStudioHeaders = [
   { key: "Content-Security-Policy", value: `frame-ancestors ${frameAncestors}; object-src 'none'; base-uri 'self'; form-action 'self'` },
+  // HTTPS only, for two years. No preload: that is a decision for whoever owns the domain.
+  { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=()" },

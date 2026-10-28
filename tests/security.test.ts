@@ -8,6 +8,7 @@ import { buildSampleDocx, buildSamplePdf } from "../scripts/fixtures.mjs";
 import { ExtractionError } from "@/src/lib/extraction/providers/types";
 import { createSafeLookup, fetchPublication, isPublicAddress, parseIPv6, parsePublicationUrl } from "@/src/lib/extraction/url-fetch";
 import { scanZip, verifyZipExpansion } from "@/src/lib/extraction/zip";
+import { auditRecord, auditRequest, setAuditSink, signAuditRecord } from "@/src/lib/security/audit";
 import { authenticateRequest, readAuthConfig, type AuthConfig } from "@/src/lib/security/auth";
 import { BodyTooLargeError, readBodyWithLimit } from "@/src/lib/security/body";
 import { ConcurrencyLimiter, rateLimitKey, SlidingWindowLimiter } from "@/src/lib/security/rate-limit";
@@ -70,11 +71,11 @@ describe("bearer token verification", () => {
   const req = (auth?: string) => new Request("https://app.example/api/extract", { method: "POST", headers: auth ? { authorization: auth } : {} });
 
   it("accepts a valid token", async () => {
-    expect(await authenticateRequest(req(`Bearer ${await token()}`), config, keySet)).toEqual({ ok: true, subject: "auth0|user-1", mode: "auth0" });
+    expect(await authenticateRequest(req(`Bearer ${await token()}`), config, keySet)).toEqual({ ok: true, subject: "auth0|user-1", mode: "auth0", client: "client-ok", organization: "org_1" });
   });
   it("rejects a missing or malformed header", async () => {
-    expect(await authenticateRequest(req(), config, keySet)).toMatchObject({ ok: false, status: 401 });
-    expect(await authenticateRequest(req("Basic abc"), config, keySet)).toMatchObject({ ok: false, status: 401 });
+    expect(await authenticateRequest(req(), config, keySet)).toMatchObject({ ok: false, status: 401, reason: "missing-token" });
+    expect(await authenticateRequest(req("Basic abc"), config, keySet)).toMatchObject({ ok: false, status: 401, reason: "malformed-authorization-header" });
   });
   it("rejects wrong audience, wrong issuer, expiry and foreign signatures", async () => {
     for (const t of [
@@ -100,11 +101,48 @@ describe("bearer token verification", () => {
     expect(await authenticateRequest(req(`Bearer ${hs}`), config, keySet)).toMatchObject({ ok: false });
   });
   it("enforces allowed client and organization", async () => {
-    expect(await authenticateRequest(req(`Bearer ${await token({ azp: "someone-else" })}`), config, keySet)).toMatchObject({ ok: false });
-    expect(await authenticateRequest(req(`Bearer ${await token({ org_id: "org_2" })}`), config, keySet)).toMatchObject({ ok: false });
+    expect(await authenticateRequest(req(`Bearer ${await token({ azp: "someone-else" })}`), config, keySet)).toMatchObject({ ok: false, reason: "client-not-allowed" });
+    expect(await authenticateRequest(req(`Bearer ${await token({ org_id: "org_2" })}`), config, keySet)).toMatchObject({ ok: false, reason: "organization-not-allowed" });
   });
   it("returns 503 when misconfigured, without accepting the request", async () => {
     expect(await authenticateRequest(req(), { mode: "misconfigured", reason: "x" })).toMatchObject({ ok: false, status: 503, code: "auth-not-configured" });
+  });
+});
+
+describe("audit log", () => {
+  const at = new Date("2026-10-28T09:30:00+04:00");
+
+  it("records a UTC timestamp, the event and its fields, and drops missing fields", () => {
+    expect(auditRecord("auth.success", "success", "req-1", { subject: "auth0|u", organization: undefined }, {}, at)).toEqual({
+      type: "audit",
+      ts: "2026-10-28T05:30:00.000Z",
+      app: "content-studio",
+      event: "auth.success",
+      outcome: "success",
+      requestId: "req-1",
+      subject: "auth0|u",
+    });
+  });
+  it("signs records when a key is set, so edits are detectable", () => {
+    const record = auditRecord("extract.succeeded", "success", "req-1", { bytes: 10 }, { CONTENT_STUDIO_AUDIT_HMAC_KEY: "k" }, at);
+    const { sig, ...rest } = record;
+    expect(sig).toBe(signAuditRecord(rest, "k"));
+    expect(signAuditRecord({ ...rest, bytes: 11 }, "k")).not.toBe(sig);
+  });
+  it("writes one JSON line per event and never throws", () => {
+    const lines: string[] = [];
+    const previous = setAuditSink((line) => lines.push(line));
+    try {
+      const audit = auditRequest(new Request("https://app.example/api/extract", { headers: { "x-vercel-id": "fra1::abc" } }));
+      audit.log("auth.failure", "failure", { reason: "missing-token" });
+      expect(JSON.parse(lines[0])).toMatchObject({ event: "auth.failure", outcome: "failure", requestId: "fra1::abc", reason: "missing-token" });
+      setAuditSink(() => {
+        throw new Error("sink down");
+      });
+      expect(() => audit.log("auth.success", "success")).not.toThrow();
+    } finally {
+      setAuditSink(previous);
+    }
   });
 });
 

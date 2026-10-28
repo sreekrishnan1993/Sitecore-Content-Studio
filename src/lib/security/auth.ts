@@ -23,8 +23,8 @@ export type AuthConfig =
   | { mode: "misconfigured"; reason: string };
 
 export type AuthResult =
-  | { ok: true; subject: string; mode: "auth0" | "none" }
-  | { ok: false; status: 401 | 503; code: "unauthorized" | "auth-not-configured"; message: string };
+  | { ok: true; subject: string; mode: "auth0" | "none"; client?: string; organization?: string }
+  | { ok: false; status: 401 | 503; code: "unauthorized" | "auth-not-configured"; message: string; reason: string };
 
 const list = (value: string | undefined) =>
   (value ?? "")
@@ -75,19 +75,22 @@ function remoteKeySet(issuer: string): JWTVerifyGetKey {
   return keySet;
 }
 
-const UNAUTHORIZED = { ok: false, status: 401, code: "unauthorized", message: "Sign-in is required, or your session has expired. Reopen Content Studio from Sitecore." } as const;
+/** A 401 result. `reason` is for the audit log only (never the token); the message is the same for every cause. */
+const unauthorized = (reason: string) =>
+  ({ ok: false, status: 401, code: "unauthorized", message: "Sign-in is required, or your session has expired. Reopen Content Studio from Sitecore.", reason }) as const;
+
+const claim = (value: unknown) => (typeof value === "string" && value ? value.slice(0, 200) : undefined);
 
 /** Authenticates a request. `keySet` can be injected for tests; production uses the issuer's JWKS. */
 export async function authenticateRequest(request: Request, config: AuthConfig = readAuthConfig(), keySet?: JWTVerifyGetKey): Promise<AuthResult> {
   if (config.mode === "misconfigured") {
-    console.error(`Content Studio: API authentication is not configured: ${config.reason}`);
-    return { ok: false, status: 503, code: "auth-not-configured", message: "Document processing is not available because server authentication is not configured." };
+    return { ok: false, status: 503, code: "auth-not-configured", message: "Document processing is not available because server authentication is not configured.", reason: config.reason };
   }
   if (config.mode === "none") return { ok: true, subject: "anonymous", mode: "none" };
 
   const header = request.headers.get("authorization") ?? "";
   const match = /^Bearer\s+([A-Za-z0-9\-_]+\.[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_]+)$/.exec(header.trim());
-  if (!match) return UNAUTHORIZED;
+  if (!match) return unauthorized(header ? "malformed-authorization-header" : "missing-token");
 
   try {
     const { payload } = await jwtVerify(match[1], keySet ?? remoteKeySet(config.issuer), {
@@ -97,25 +100,13 @@ export async function authenticateRequest(request: Request, config: AuthConfig =
       clockTolerance: 30,
       requiredClaims: ["sub", "exp"],
     });
-    if (config.clientIds.length > 0) {
-      const client = (payload.azp ?? payload.client_id) as unknown;
-      if (typeof client !== "string" || !config.clientIds.includes(client)) {
-        console.warn("Content Studio: token rejected (client not allowed)");
-        return UNAUTHORIZED;
-      }
-    }
-    if (config.allowedOrgs.length > 0) {
-      const org = payload[config.orgClaim];
-      if (typeof org !== "string" || !config.allowedOrgs.includes(org)) {
-        console.warn("Content Studio: token rejected (organization not allowed)");
-        return UNAUTHORIZED;
-      }
-    }
-    return { ok: true, subject: payload.sub as string, mode: "auth0" };
+    const client = claim(payload.azp ?? payload.client_id);
+    const organization = claim(payload[config.orgClaim]);
+    if (config.clientIds.length > 0 && (!client || !config.clientIds.includes(client))) return unauthorized("client-not-allowed");
+    if (config.allowedOrgs.length > 0 && (!organization || !config.allowedOrgs.includes(organization))) return unauthorized("organization-not-allowed");
+    return { ok: true, subject: payload.sub as string, mode: "auth0", client, organization };
   } catch (error) {
-    // Log the category only; never log the token.
-    const reason = error instanceof joseErrors.JOSEError ? error.code : error instanceof Error ? error.name : "unknown";
-    console.warn(`Content Studio: token rejected (${reason})`);
-    return UNAUTHORIZED;
+    // The category only; never the token.
+    return unauthorized(error instanceof joseErrors.JOSEError ? error.code : error instanceof Error ? error.name : "unknown");
   }
 }
